@@ -45,6 +45,7 @@ const PIEZAS = [
     accion: "Explora e intenta escapar.", motivacion: "Reinterpretar el diario.",
     puente: "«Conoce a María antes de su desaparición», con acceso a su diario en Instagram.",
     tipo: "ancha",
+    enlace: { texto: "Jugar El sueño de María", url: "juego.html" },
     imagenes: [
       { src: "img/videojuego.jpg", w: 1600, h: 900, alt: "María con un farol dentro de la cueva, rodeada de huesos, con el Pishtaco detrás de ella" }
     ]

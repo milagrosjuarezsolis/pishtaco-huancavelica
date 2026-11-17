@@ -81,7 +81,11 @@ PIEZAS.forEach((p) => {
       "<p>" + p.texto + "</p>" +
       '<dl class="ficha-uso"><dt>Acción</dt><dd>' + p.accion + "</dd><dt>Motivación</dt><dd>" + p.motivacion + "</dd></dl>" +
       '<p class="puente">' + p.puente + "</p>" +
-      (p.enlace ? '<a class="boton chico" href="' + p.enlace.url + '" target="_blank" rel="noopener">' + p.enlace.texto + " ↗</a>" : "") +
+      (p.enlace
+        ? (/^https?:/.test(p.enlace.url)
+            ? '<a class="boton chico" href="' + p.enlace.url + '" target="_blank" rel="noopener">' + p.enlace.texto + " ↗</a>"
+            : '<a class="boton chico" href="' + p.enlace.url + '">' + p.enlace.texto + " →</a>")
+        : "") +
     "</div>";
   contPiezas.appendChild(art);
 });
