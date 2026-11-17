@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Pishtaco de Huancavelica · Experiencia transmedia</title>
+<meta name="description" content="Adéntrate en el misterio de la desaparición de María Quispe en Huancavelica, 1963. Historia, mapa, personajes y simulación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- ================= BARRA ================= -->
+<header class="barra" id="barra">
+  <div class="contenedor">
+    <a class="marca" href="#inicio"><span class="luna" aria-hidden="true"></span>El Pishtaco</a>
+    <nav aria-label="Secciones" style="display:contents">
+      <ul class="menu" id="menu">
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#mapa">Mapa</a></li>
+        <li><a href="#personajes">Personajes</a></li>
+        <li><a href="#simulacion">Simulación</a></li>
+        <li><a href="#escenarios">Escenarios</a></li>
+        <li><a href="#transmedia">Transmedia</a></li>
+      </ul>
+    </nav>
+    <a class="boton chico" href="#historia">Iniciar investigación</a>
+    <button class="hamburguesa" id="hamburguesa" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- ================= PORTADA ================= -->
+<section class="portada" id="inicio" aria-label="Portada">
+  <div class="fondo" aria-hidden="true">
+    <img src="img/portada-pishtaco.jpg" alt="" width="1600" height="900" fetchpriority="high">
+  </div>
+  <div class="niebla" aria-hidden="true"></div>
+  <div class="contenedor">
+    <div class="contenido">
+      <span class="sello">Expediente 1963 · Experiencia transmedia</span>
+      <h1>
+        <span class="titulo-el">El</span>
+        <span class="titulo-nombre">Pishtaco</span>
+        <span class="titulo-lugar">de Huancavelica</span>
+      </h1>
+      <p class="bajada">Adéntrate en el misterio de la desaparición de María Quispe. Conecta pistas, examina los pactos ancestrales y enfréntate al ritual en las entrañas del nevado Huamanrazo.</p>
+      <div class="acciones">
+        <a class="boton" href="#historia">Iniciar investigación →</a>
+        <a class="boton fantasma" href="#simulacion">Jugar: reconstruye el caso</a>
+      </div>
+      <div class="datos-portada">
+        <span><strong>1963–1965</strong>Huancavelica</span>
+        <span><strong>4</strong>piezas transmedia</span>
+        <span><strong>6</strong>personajes</span>
+      </div>
+    </div>
+  </div>
+  <a class="bajar" href="#historia">Desciende</a>
+</section>
+
+<!-- ================= HISTORIA ================= -->
+<section id="historia">
+  <div class="contenedor">
+    <span class="etiqueta">Historia base</span>
+    <h2 class="titulo-seccion">La muerte no fue el final</h2>
+    <div class="historia-grid">
+      <div class="relato">
+        <p>Atoq, obsesionado con vencer la muerte, encontró una antigua cámara ceremonial en una cueva de las faldas del nevado Huamanrazo. Allí invocó a Supay, una antigua divinidad vinculada al mundo de los muertos, y realizó un ritual para obtener la vida eterna. Como castigo, su cuerpo murió, pero su espíritu quedó atrapado entre el mundo de los vivos y los muertos, convirtiéndose en el Pishtaco.</p>
+        <p>Con el tiempo, el Pishtaco comenzó a desaparecer personas para obtener su grasa y esencia vital. Años después, Don Eusebio descubrió su existencia y pactó con él para conseguir la vida eterna.</p>
+        <p>En 1963, María Quispe desapareció después de encontrarse con el Pishtaco y Don Eusebio. Dos años después, su hermano Gabriel, un detective, regresó a Huancavelica para buscarla. Las pistas lo llevaron hasta la cueva del Huamanrazo, donde encontró a María encerrada y descubrió que sería utilizada en el último ritual.</p>
+        <p>Gabriel logró romper la piedra negra, destruyendo el ritual y escapando con María. La cueva se derrumbó y Eusebio y el Pishtaco desaparecieron.</p>
+        <p>Sin embargo, días después, Gabriel encontró el sombrero negro del Pishtaco junto a una nota: <em>«La muerte no fue el final.»</em> Entonces escuchó tres golpes entre la neblina.</p>
+        <div class="toc">Toc. Toc. Toc.</div>
+        <p><em>El Pishtaco quizá seguía vivo y la historia todavía no había terminado.</em></p>
+      </div>
+      <figure class="comic">
+        <div class="lamina"><img src="img/comic-1.jpg" alt="Página 1 del cómic: el nevado Huamanrazo, las comunidades y la cueva escondida entre las rocas" width="922" height="1383" loading="lazy"></div>
+        <div class="lamina"><img src="img/comic-2.jpg" alt="Página 2 del cómic: Atoq en su casa estudiando los rituales de las montañas" width="922" height="1383" loading="lazy"></div>
+        <figcaption>Primeras páginas del cómic digital.</figcaption>
+      </figure>
+    </div>
+    <ol class="linea-tiempo">
+      <li><div class="num"><b>1</b></div><strong>Origen</strong><span>Atoq desafía a Supay.</span></li>
+      <li><div class="num"><b>2</b></div><strong>Pacto</strong><span>Eusebio ayuda al Pishtaco.</span></li>
+      <li><div class="num"><b>3</b></div><strong>1963</strong><span>María desaparece.</span></li>
+      <li><div class="num"><b>4</b></div><strong>1965</strong><span>Gabriel investiga y la rescata.</span></li>
+      <li><div class="num"><b>5</b></div><strong>Final abierto</strong><span>Fragmento de piedra y tres golpes.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= MAPA ================= -->
+<section class="mapa-seccion" id="mapa">
+  <div class="contenedor">
+    <span class="etiqueta">Mapa del universo narrativo</span>
+    <h2 class="titulo-seccion">Explora Huancavelica</h2>
+    <p class="intro">Toca los puntos rojos del mapa para abrir la ficha de cada lugar y personaje. Los puntos que ya viste se oscurecen.</p>
+    <div class="mapa-grid">
+      <div>
+        <div class="mapa" id="mapa-caja">
+          <img src="img/mapa.jpg" alt="Mapa ilustrado de Huancavelica con el nevado Huamanrazo, la cueva del Pishtaco, la casa de Don Eusebio y el pueblo" width="1536" height="1024" loading="lazy">
+        </div>
+        <div class="leyenda">
+          <span><i style="color:#e2504a"></i>Ruta de María · 1963</span>
+          <span><i style="color:#5fc7e8"></i>Ruta de Gabriel · 1965</span>
+          <span><i style="color:#f0c060"></i>Camino principal</span>
+        </div>
+      </div>
+      <aside class="ficha" id="ficha" aria-live="polite">
+        <span class="etiqueta">Ficha</span>
+        <h3>Elige un punto</h3>
+        <p class="vacia">Toca un punto del mapa para ver qué pasó en ese lugar.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERSONAJES ================= -->
+<section class="con-escena" id="personajes">
+  <div class="fondo-escena" aria-hidden="true"><img src="img/fondo-nevado.jpg" alt="" width="1400" height="395" loading="lazy"></div>
+  <div class="contenedor">
+    <span class="etiqueta">Hojas de personaje</span>
+    <h2 class="titulo-seccion">Personajes</h2>
+    <p class="intro">Elige un retrato para abrir su expediente: quién es, sus expresiones, su vestuario y sus objetos.</p>
+    <div class="selector" role="tablist" aria-label="Personajes" id="selector"></div>
+    <div class="expediente" id="expediente" role="tabpanel" tabindex="0" aria-live="polite"></div>
+  </div>
+  <div class="borde-abajo" aria-hidden="true"></div>
+</section>
+
+<!-- ================= SIMULACIÓN ================= -->
+<section class="con-escena" id="simulacion">
+  <div class="fondo-escena" aria-hidden="true"><img src="img/fondo-cueva.jpg" alt="" width="1400" height="675" loading="lazy"></div>
+  <div class="contenedor">
+    <span class="etiqueta">Simulación</span>
+    <h2 class="titulo-seccion">Reconstruye el caso</h2>
+    <p class="intro">Eres el investigador. En cada escena, juega la carta del personaje que corresponde. Si aciertas, se revela lo que pasó y la pista se suma a tu tablero.</p>
+    <div class="sim">
+      <div class="sim-escena">
+        <div class="escena" id="escena"></div>
+        <div class="barra-progreso" aria-hidden="true"><div id="barra-progreso"></div></div>
+        <div class="progreso-texto" id="progreso-texto"></div>
+      </div>
+      <div class="sim-mano">
+        <div class="mano" id="mano" role="group" aria-label="Cartas de personajes"></div>
+      </div>
+      <div class="tablero">
+        <h4>Tablero de pistas</h4>
+        <ol id="tablero"><li class="vacio">Todavía no hay pistas.</li></ol>
+      </div>
+    </div>
+  </div>
+  <div class="borde-abajo" aria-hidden="true"></div>
+</section>
+
+<!-- ================= ESCENARIOS ================= -->
+<section id="escenarios">
+  <div class="contenedor">
+    <span class="etiqueta">Propuesta de escenarios</span>
+    <h2 class="titulo-seccion">Escenarios</h2>
+    <div class="dos">
+      <article class="panel">
+        <img src="img/escenario-cueva.jpg" alt="Lámina de escenario de la cueva del Huamanrazo: entrada oculta, pasadizo, cámara ceremonial y objetos del ritual" width="1076" height="717" loading="lazy">
+        <div class="txt">
+          <h3>La cueva del Huamanrazo</h3>
+          <p>Exterior e interior: entrada oculta, pasadizo, cámara ceremonial y espacio de cautiverio. Objetos del ritual: piedra negra, velas, vasijas y hojas de coca.</p>
+        </div>
+      </article>
+      <article class="panel">
+        <img src="img/escenario-casa-atoq.jpg" alt="Lámina de escenario de la casa de Atoq: exterior, interior, rincón de estudio y objetos personales" width="1045" height="964" loading="lazy">
+        <div class="txt">
+          <h3>La casa de Atoq</h3>
+          <p>Antes de la transformación. Casa de piedra, adobe y madera cerca de las comunidades. Su rincón de estudio refleja la búsqueda de Atoq: apuntes, libros, bolsa de tela y herramientas.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRANSMEDIA (4 PIEZAS) ================= -->
+<section class="piezas" id="transmedia">
+  <div class="contenedor">
+    <div class="cabecera">
+      <span class="etiqueta">Ecosistema transmedia</span>
+      <h2 class="titulo-seccion">Una historia, cuatro puertas</h2>
+      <p class="intro">La historia se cuenta en cuatro piezas conectadas. Cada una lleva a la siguiente: el cómic se entiende por sí solo, y los otros medios amplían la experiencia.</p>
+      <div class="divisor" aria-hidden="true"><span></span></div>
+    </div>
+    <div id="lista-piezas"></div>
+    <div class="recorrido">
+      <span class="etiqueta">Recorrido del usuario</span>
+      <img src="img/recorrido.jpg" alt="Infografía del recorrido del usuario transmedia: Instagram, cómic digital, podcast y videojuego, y regreso a Instagram" width="1600" height="800" loading="lazy">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="contenedor columnas">
+    <div>
+      <h3>Grupo Pishtaco · Taller Multimedia TA4</h3>
+      <p>Trabajo grupal del curso Taller Multimedia.</p>
+    </div>
+    <div>
+      <p>Curso: Taller Multimedia</p>
+      <p>Historia, personajes e ilustraciones tomados del avance del grupo. Ficción basada en relatos orales andinos.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="datos.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
