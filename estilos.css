@@ -751,6 +751,31 @@ footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.5rem; }
 .acordeon summary:hover { color: #fff; }
 .acordeon details p { margin: 0 0 22px; color: #cfc4b6; max-width: 65ch; }
 
+/* Ajustes de revisión */
+.marca { font-size: 1.6rem; }
+#historia { padding-bottom: clamp(30px, 4vw, 50px); }
+
+/* Banner: la cara de María a la derecha, el texto a la izquierda sobre negro */
+.banner-cine { text-align: left; background: #000; }
+.fondo-banner { left: 28%; }
+.fondo-banner img { object-position: center 30%; }
+.fondo-banner::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.75) 18%, transparent 45%);
+}
+.banner-cine .contenedor::before { inset: -30% 40% -30% -20%; background: radial-gradient(ellipse at 35% 50%, rgba(0, 0, 0, 0.8), transparent 70%); }
+.banner-frase { margin-left: 0; max-width: 22ch; font-size: clamp(1.7rem, 3.6vw, 2.8rem); }
+.banner-sup { color: #ef5b4f; text-shadow: 0 2px 10px #000; }
+@media (max-width: 900px) {
+  /* En celular: imagen arriba, texto abajo sobre negro */
+  .banner-cine { align-items: flex-end; min-height: 0; padding: 0 0 70px; flex-direction: column; text-align: center; }
+  .fondo-banner { position: relative; inset: auto; width: 100%; aspect-ratio: 4 / 3; left: 0; }
+  .fondo-banner::before { background: linear-gradient(0deg, #000 0%, transparent 40%); }
+  .banner-cine .contenedor { margin-top: -40px; }
+  .banner-frase { margin: 0 auto 28px; }
+  .banner-cine::before, .banner-cine::after { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }

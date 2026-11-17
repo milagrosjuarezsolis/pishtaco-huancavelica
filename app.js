@@ -230,6 +230,7 @@ function abrirVisor(im, boton) {
   visorImg.width = im.w;
   visorImg.height = im.h;
   visorImg.alt = im.pie;
+  visorImg.hidden = false;
   visorPie.textContent = im.pie;
   if (typeof visor.showModal === "function") visor.showModal();
   else window.open(im.grande, "_blank");
@@ -238,6 +239,7 @@ document.getElementById("visor-cerrar").addEventListener("click", () => visor.cl
 visor.addEventListener("click", (e) => { if (e.target === visor) visor.close(); }); // toque en el fondo
 visor.addEventListener("close", () => {
   visorImg.removeAttribute("src");
+  visorImg.hidden = true;
   if (abridor) abridor.focus();
 });
 
