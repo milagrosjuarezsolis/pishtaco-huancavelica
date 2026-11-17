@@ -1196,6 +1196,22 @@ strong { color: var(--hueso); }
 .etiqueta, .banner-sup, .sello, .folio, .pieza .medio { color: var(--vino-texto); }
 .titulo-el { color: var(--vino-texto); }
 
+/* Texto en blanco, subtemas en rojo y «El» más grande */
+:root {
+  --ceniza: #f5f2ec;          /* texto teórico: blanco */
+  --ceniza-oscura: #cfc9c0;   /* secundarios: blanco suave */
+  --hueso: #ffffff;
+  --rojo-subtema: #e0353d;    /* rojo sangre más visible */
+}
+body, .relato, .intro, .pieza .texto p, .panel p, .acordeon details p, .datos dd, .ficha-uso dd,
+.portada .bajada, .escena, .tablero ol, .linea-tiempo li > span:last-child { color: var(--ceniza); }
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio {
+  color: var(--rojo-subtema); text-shadow: 0 0 14px rgba(224, 53, 61, 0.45), 0 1px 0 rgba(0, 0, 0, 0.9);
+}
+.etiqueta::before { background: linear-gradient(90deg, transparent, var(--rojo-subtema)); }
+.etiqueta::after, .sello::before { background: var(--rojo-subtema); box-shadow: 0 0 8px rgba(224, 53, 61, 0.7); }
+.titulo-el { font-size: clamp(2.4rem, 4.8vw, 3.6rem); color: var(--rojo-subtema); margin-bottom: -0.05em; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
