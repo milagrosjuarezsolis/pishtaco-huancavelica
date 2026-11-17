@@ -126,6 +126,30 @@ const LUGARES = [
     texto: "Atoq (humano) → El Pishtaco (tras el ritual). Su cuerpo murió, pero su espíritu quedó atrapado entre el mundo de los vivos y los muertos." }
 ];
 
+// Galería: miniatura (mini) para la cuadrícula y la imagen grande solo al abrirla
+const GALERIA = [
+  { id: "comic", nombre: "Cómic", imagenes: [
+    { mini: "img/mini/portada-comic.jpg", grande: "img/portada-comic.jpg", w: 615, h: 922, pie: "Portada del cómic digital" },
+    { mini: "img/mini/comic-1.jpg", grande: "img/comic-1.jpg", w: 922, h: 1383, pie: "Página 1: el nevado Huamanrazo y la cueva escondida" },
+    { mini: "img/mini/comic-2.jpg", grande: "img/comic-2.jpg", w: 922, h: 1383, pie: "Página 2: Atoq y su obsesión por vencer la muerte" }
+  ]},
+  { id: "escenarios", nombre: "Escenarios", imagenes: [
+    { mini: "img/mini/escenario-cueva.jpg", grande: "img/escenario-cueva.jpg", w: 1076, h: 717, pie: "La cueva del Huamanrazo: entrada, pasadizo y cámara ceremonial" },
+    { mini: "img/mini/escenario-casa-atoq.jpg", grande: "img/escenario-casa-atoq.jpg", w: 1045, h: 964, pie: "La casa de Atoq, antes de la transformación" },
+    { mini: "img/mini/videojuego.jpg", grande: "img/videojuego.jpg", w: 1600, h: 900, pie: "El sueño de María: atrapada en la cueva" }
+  ]},
+  { id: "laminas", nombre: "Láminas", imagenes: [
+    { mini: "img/mini/mapa.jpg", grande: "img/mapa.jpg", w: 1536, h: 1024, pie: "Mapa del universo narrativo" },
+    { mini: "img/mini/hoja-habitantes.jpg", grande: "img/hoja-habitantes.jpg", w: 1076, h: 717, pie: "Habitantes de Huancavelica: propuesta de vestuario" }
+  ]},
+  { id: "diario", nombre: "Diario de María", imagenes: [
+    { mini: "img/mini/ig-perfil.jpg", grande: "img/ig-perfil.jpg", w: 503, h: 960, pie: "Perfil «El Diario de María» en Instagram" },
+    { mini: "img/mini/ig-1.jpg", grande: "img/ig-1.jpg", w: 504, h: 703, pie: "Caso: casa abandonada" },
+    { mini: "img/mini/ig-2.jpg", grande: "img/ig-2.jpg", w: 504, h: 636, pie: "Caso: huellas desconocidas" },
+    { mini: "img/mini/ig-3.jpg", grande: "img/ig-3.jpg", w: 504, h: 656, pie: "Caso: casa sin personas" }
+  ]}
+];
+
 const ESCENAS = [
   { lugar: "Origen · Cámara ceremonial", titulo: "El ritual", correcta: "atoq",
     pregunta: "¿Quién, obsesionado con vencer la muerte, invocó a Supay para obtener la vida eterna?",

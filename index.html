@@ -7,8 +7,17 @@
 <meta name="description" content="Adéntrate en el misterio de la desaparición de María Quispe en Huancavelica, 1963. Historia, mapa, personajes y simulación.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700&family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700&family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilos.css">
+<script>
+  // Cortina de cine: solo la primera vez por visita y nunca si se pidió reducir movimiento.
+  try {
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("cortina-vista")) {
+      document.documentElement.classList.add("con-cortina");
+      sessionStorage.setItem("cortina-vista", "1");
+    }
+  } catch (e) {}
+</script>
 </head>
 <body>
 
@@ -23,6 +32,7 @@
         <li><a href="#personajes">Personajes</a></li>
         <li><a href="#simulacion">Simulación</a></li>
         <li><a href="#escenarios">Escenarios</a></li>
+        <li><a href="#galeria">Galería</a></li>
         <li><a href="#transmedia">Transmedia</a></li>
       </ul>
     </nav>
@@ -38,6 +48,8 @@
     <img src="img/portada-pishtaco.jpg" alt="" width="1600" height="900" fetchpriority="high">
   </div>
   <div class="niebla" aria-hidden="true"></div>
+  <div class="cortina cortina-arriba" aria-hidden="true"></div>
+  <div class="cortina cortina-abajo" aria-hidden="true"></div>
   <div class="contenedor">
     <div class="contenido">
       <span class="sello">Expediente 1963 · Experiencia transmedia</span>
@@ -46,6 +58,7 @@
         <span class="titulo-nombre">Pishtaco</span>
         <span class="titulo-lugar">de Huancavelica</span>
       </h1>
+      <p class="lema">«La muerte no fue el final.»</p>
       <p class="bajada">Adéntrate en el misterio de la desaparición de María Quispe. Conecta pistas, examina los pactos ancestrales y enfréntate al ritual en las entrañas del nevado Huamanrazo.</p>
       <div class="acciones">
         <a class="boton" href="#historia">Iniciar investigación →</a>
@@ -92,6 +105,18 @@
       <li class="revelar"><span class="rombo" aria-hidden="true"></span><strong>Rescate</strong><span>Gabriel investiga y la rescata.</span></li>
       <li class="revelar"><span class="rombo" aria-hidden="true"></span><strong>Final abierto</strong><span>Fragmento de piedra y tres golpes.</span></li>
     </ol>
+  </div>
+</section>
+
+<!-- ================= BANNER DE CINE ================= -->
+<section class="banner-cine" aria-label="La cueva del Huamanrazo">
+  <div class="fondo-banner" aria-hidden="true">
+    <img src="img/videojuego.jpg" alt="" width="1600" height="900" loading="lazy">
+  </div>
+  <div class="contenedor">
+    <p class="banner-sup">Huancavelica · 1963</p>
+    <p class="banner-frase">«Entre aquellas montañas existía un lugar al que nadie se atrevía a acercarse después del anochecer.»</p>
+    <a class="boton" href="#mapa">Encuentra la cueva →</a>
   </div>
 </section>
 
@@ -184,6 +209,24 @@
   </div>
 </section>
 
+<!-- ================= GALERÍA ================= -->
+<section id="galeria">
+  <div class="contenedor">
+    <span class="etiqueta">Archivo del caso</span>
+    <h2 class="titulo-seccion">Galería</h2>
+    <p class="intro">Las láminas, páginas e imágenes del expediente. Elige una carpeta y toca una imagen para verla en grande.</p>
+    <div class="pestanas-galeria" role="tablist" aria-label="Carpetas de la galería" id="pestanas-galeria"></div>
+    <div class="rejilla" id="rejilla" role="tabpanel" tabindex="0"></div>
+  </div>
+  <dialog class="visor" id="visor" aria-label="Imagen ampliada">
+    <button class="visor-cerrar" id="visor-cerrar" aria-label="Cerrar">×</button>
+    <figure>
+      <img id="visor-img" alt="">
+      <figcaption id="visor-pie"></figcaption>
+    </figure>
+  </dialog>
+</section>
+
 <!-- ================= TRANSMEDIA (4 PIEZAS) ================= -->
 <section class="piezas" id="transmedia">
   <div class="contenedor">
@@ -197,6 +240,36 @@
     <div class="recorrido">
       <span class="etiqueta">Recorrido del usuario</span>
       <img src="img/recorrido.jpg" alt="Infografía del recorrido del usuario transmedia: Instagram, cómic digital, podcast y videojuego, y regreso a Instagram" width="1600" height="800" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ================= PREGUNTAS FRECUENTES ================= -->
+<section class="preguntas" id="preguntas">
+  <div class="contenedor">
+    <span class="etiqueta">Antes de entrar</span>
+    <h2 class="titulo-seccion">Preguntas frecuentes</h2>
+    <div class="acordeon">
+      <details name="faq" open>
+        <summary>¿Qué es El Pishtaco de Huancavelica?</summary>
+        <p>Una experiencia transmedia de misterio andino. La historia se cuenta en cuatro piezas conectadas: el diario de María en Instagram, un cómic digital, un podcast con las voces del pueblo y un videojuego.</p>
+      </details>
+      <details name="faq">
+        <summary>¿Por dónde empiezo?</summary>
+        <p>Por el diario de María en Instagram. Desde ahí el recorrido te lleva al cómic, luego al podcast y al videojuego, y de vuelta a Instagram para comentar y compartir teorías.</p>
+      </details>
+      <details name="faq">
+        <summary>¿Tengo que ver todas las piezas?</summary>
+        <p>No. El cómic se comprende por sí solo; los otros medios amplían la experiencia.</p>
+      </details>
+      <details name="faq">
+        <summary>¿Es una historia real?</summary>
+        <p>Es ficción. Se inspira en el temor al Pishtaco, los rituales y los relatos orales de las comunidades andinas de Huancavelica, donde lo sobrenatural convive con la vida cotidiana.</p>
+      </details>
+      <details name="faq">
+        <summary>¿Para quién es?</summary>
+        <p>Para quienes buscan relatos tradicionales presentados con altos estándares de diseño e interactividad, y quieren sentirse parte activa de la investigación: resolver pistas, tomar decisiones y explorar atmósferas.</p>
+      </details>
     </div>
   </div>
 </section>

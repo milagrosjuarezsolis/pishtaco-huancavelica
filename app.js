@@ -137,44 +137,54 @@ function abrirFicha(lugar, boton, item) {
 }
 
 /* ---------- Selector de personajes (pestañas) ---------- */
-const selector = document.getElementById("selector");
-const expediente = document.getElementById("expediente");
-const pestanas = [];
-
-PERSONAJES.forEach((p, i) => {
-  const b = document.createElement("button");
-  b.className = "retrato";
-  b.id = "pestana-" + p.id;
-  b.setAttribute("role", "tab");
-  b.setAttribute("aria-controls", "expediente");
-  b.innerHTML =
-    '<span class="marco"><img src="' + (p.cara || p.img) + '" alt="" loading="lazy"></span>' +
-    '<span class="nombre">' + p.nombre + "</span>";
-  b.addEventListener("click", () => elegirPersonaje(i, false));
-  b.addEventListener("keydown", (e) => {
-    let destino = null;
-    if (e.key === "ArrowRight") destino = (i + 1) % PERSONAJES.length;
-    if (e.key === "ArrowLeft") destino = (i - 1 + PERSONAJES.length) % PERSONAJES.length;
-    if (e.key === "Home") destino = 0;
-    if (e.key === "End") destino = PERSONAJES.length - 1;
-    if (destino !== null) { e.preventDefault(); elegirPersonaje(destino, true); }
+/* Pestañas reutilizables (personajes y galería): clic, flechas, Inicio y Fin */
+function crearPestanas(contenedor, panel, elementos, opciones) {
+  const botones = elementos.map((el, i) => {
+    const b = document.createElement("button");
+    b.className = opciones.clase;
+    b.id = opciones.prefijo + "-" + el.id;
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-controls", panel.id);
+    b.innerHTML = opciones.contenido(el);
+    b.addEventListener("click", () => elegir(i, false));
+    b.addEventListener("keydown", (e) => {
+      let destino = null;
+      if (e.key === "ArrowRight") destino = (i + 1) % elementos.length;
+      if (e.key === "ArrowLeft") destino = (i - 1 + elementos.length) % elementos.length;
+      if (e.key === "Home") destino = 0;
+      if (e.key === "End") destino = elementos.length - 1;
+      if (destino !== null) { e.preventDefault(); elegir(destino, true); }
+    });
+    contenedor.appendChild(b);
+    return b;
   });
-  selector.appendChild(b);
-  pestanas.push(b);
+  function elegir(i, enfocar) {
+    botones.forEach((b, j) => {
+      b.setAttribute("aria-selected", j === i);
+      b.tabIndex = j === i ? 0 : -1;
+    });
+    if (enfocar) {
+      botones[i].focus();
+      botones[i].scrollIntoView({ behavior: reducirMovimiento ? "auto" : "smooth", block: "nearest", inline: "center" });
+    }
+    panel.setAttribute("aria-labelledby", botones[i].id);
+    opciones.alElegir(elementos[i], i);
+  }
+  elegir(0, false);
+}
+
+/* ---------- Selector de personajes ---------- */
+const expediente = document.getElementById("expediente");
+crearPestanas(document.getElementById("selector"), expediente, PERSONAJES, {
+  clase: "retrato",
+  prefijo: "pestana",
+  contenido: (p) =>
+    '<span class="marco"><img src="' + (p.cara || p.img) + '" alt="" loading="lazy"></span>' +
+    '<span class="nombre">' + p.nombre + "</span>",
+  alElegir: mostrarPersonaje
 });
 
-function elegirPersonaje(i, enfocar) {
-  const p = PERSONAJES[i];
-  pestanas.forEach((b, j) => {
-    const activa = j === i;
-    b.setAttribute("aria-selected", activa);
-    b.tabIndex = activa ? 0 : -1;
-  });
-  if (enfocar) {
-    pestanas[i].focus();
-    pestanas[i].scrollIntoView({ behavior: reducirMovimiento ? "auto" : "smooth", block: "nearest", inline: "center" });
-  }
-  expediente.setAttribute("aria-labelledby", "pestana-" + p.id);
+function mostrarPersonaje(p, i) {
   const datos = Object.entries(p.datos).map(([k, v]) => "<div><dt>" + k + "</dt><dd>" + v + "</dd></div>").join("");
   expediente.innerHTML =
     '<div class="figura' + (p.cubrir ? " cubrir" : "") + '"><img src="' + p.img + '" alt="' + p.nombre + ', ' + p.rol + '"></div>' +
@@ -189,7 +199,47 @@ function elegirPersonaje(i, enfocar) {
   void expediente.offsetWidth;
   expediente.classList.add("entrando");
 }
-elegirPersonaje(0, false);
+
+/* ---------- Galería con visor ---------- */
+const rejilla = document.getElementById("rejilla");
+const visor = document.getElementById("visor");
+const visorImg = document.getElementById("visor-img");
+const visorPie = document.getElementById("visor-pie");
+let abridor = null;
+
+crearPestanas(document.getElementById("pestanas-galeria"), rejilla, GALERIA, {
+  clase: "pestana-galeria",
+  prefijo: "carpeta",
+  contenido: (c) => c.nombre + ' <span class="cuenta">' + c.imagenes.length + "</span>",
+  alElegir: (c) => {
+    rejilla.innerHTML = "";
+    c.imagenes.slice(0, 6).forEach((im) => {
+      const b = document.createElement("button");
+      b.className = "miniatura";
+      b.innerHTML = '<img src="' + im.mini + '" alt="" loading="lazy"><span>' + im.pie + "</span>";
+      b.setAttribute("aria-label", "Ver en grande: " + im.pie);
+      b.addEventListener("click", () => abrirVisor(im, b));
+      rejilla.appendChild(b);
+    });
+  }
+});
+
+function abrirVisor(im, boton) {
+  abridor = boton;
+  visorImg.src = im.grande;       // la imagen grande se carga solo ahora
+  visorImg.width = im.w;
+  visorImg.height = im.h;
+  visorImg.alt = im.pie;
+  visorPie.textContent = im.pie;
+  if (typeof visor.showModal === "function") visor.showModal();
+  else window.open(im.grande, "_blank");
+}
+document.getElementById("visor-cerrar").addEventListener("click", () => visor.close());
+visor.addEventListener("click", (e) => { if (e.target === visor) visor.close(); }); // toque en el fondo
+visor.addEventListener("close", () => {
+  visorImg.removeAttribute("src");
+  if (abridor) abridor.focus();
+});
 
 /* ---------- Simulación: reconstruye el caso ---------- */
 const cajaEscena = document.getElementById("escena");
@@ -282,7 +332,7 @@ actualizarAvance();
 /* ---------- Aparición suave al bajar (una sola vez por bloque) ---------- */
 if (!reducirMovimiento && "IntersectionObserver" in window) {
   document.querySelectorAll(
-    "main section:not(.portada) .etiqueta:not(.revelar), main .titulo-seccion:not(.revelar), main .intro, .mapa-grid, .selector, .expediente, .sim-escena, .sim-mano, .panel, .pieza, .recorrido"
+    "main section:not(.portada) .etiqueta:not(.revelar), main .titulo-seccion:not(.revelar), main .intro, .mapa-grid, .selector, .expediente, .sim-escena, .sim-mano, .panel, .pieza, .recorrido, .banner-cine .contenedor, .pestanas-galeria, .rejilla, .acordeon"
   ).forEach((el) => el.classList.add("revelar"));
   document.documentElement.classList.add("js-revelar");
   const aparecer = new IntersectionObserver((entradas) => {
