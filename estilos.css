@@ -1130,6 +1130,72 @@ strong { color: #d9768a; }
 .retrato .nombre { font-size: 0.85rem; color: var(--letra-vino-suave); }
 .retrato[aria-selected="true"] .nombre { color: var(--dorado); }
 
+/* =========================================================
+   TEORÍA DEL COLOR DEL TERROR (regla 60-30-10)
+   60 % negro: lo desconocido, la noche, la muerte.
+   30 % hueso / ceniza: frío, huesos, palidez de lo muerto (texto).
+   10 % rojo vino (sangre): peligro y alarma; solo subtemas, botones y golpes.
+   Dorado envejecido: metal oxidado, reliquia del ritual; solo nombres y rombos.
+   ========================================================= */
+:root {
+  --hueso: #ece6da;           /* títulos */
+  --ceniza: #d6cfc3;          /* texto de lectura */
+  --ceniza-oscura: #9c948a;   /* textos secundarios */
+  --letra-vino: var(--ceniza);
+  --letra-vino-suave: var(--ceniza-oscura);
+  --texto: var(--ceniza);
+  --champan: var(--ceniza);
+  --apagado: var(--ceniza-oscura);
+  --dorado: #a8894f;          /* oro viejo, sin brillo */
+  --dorado-claro: #c9b285;
+  --dorado-oscuro: #6f5a32;
+  --oro: var(--dorado-claro);
+  --cobre: var(--dorado);
+  --borde: rgba(201, 178, 133, 0.14);
+}
+body { color: var(--ceniza); }
+strong { color: var(--hueso); }
+
+/* Títulos y encabezados: hueso frío, con un halo rojo apenas perceptible */
+.titulo-seccion { color: var(--hueso); text-shadow: 0 0 26px rgba(125, 21, 38, 0.35); }
+.pieza h3, .panel h3, .escena h3, .linea-tiempo strong, .acordeon summary, footer h3 { color: var(--hueso); }
+.banner-frase, .nota { color: var(--hueso); }
+.lema { color: var(--ceniza); text-shadow: 0 0 18px rgba(163, 32, 58, 0.55); }
+.titulo-lugar { color: var(--dorado-claro); }
+
+/* Dorado envejecido: solo en los nombres y pequeños detalles */
+.titulo-nombre, .dossier h3 {
+  background: linear-gradient(180deg, #f1e6cb 0%, #cdb07a 38%, #957443 72%, #54401f 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.portada h1 { filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 18px rgba(125, 21, 38, 0.35)); }
+.marca { color: var(--dorado-claro); }
+.marca .luna { background: radial-gradient(circle at 35% 35%, #efe2c0, var(--dorado) 55%, #5a4620); box-shadow: 0 0 12px rgba(168, 137, 79, 0.5); }
+
+/* Menú y controles: ceniza; el rojo solo marca lo activo */
+.menu a { color: var(--ceniza); }
+.menu a:hover, .menu a.activo { color: var(--hueso); }
+.boton { color: var(--hueso); border-color: #8f2a3c; }
+.boton:hover { border-color: #c4415d; }
+.boton.fantasma { color: var(--ceniza); border-color: rgba(201, 178, 133, 0.45); }
+.boton.fantasma:hover { border-color: var(--dorado-claro); color: var(--hueso); }
+.boton-golpes { color: var(--hueso); }
+.pestana-galeria { color: var(--ceniza-oscura); }
+.pestana-galeria[aria-selected="true"] { color: var(--hueso); border-bottom-color: var(--vino-vivo); }
+.acordeon summary { color: var(--hueso); }
+.lugar-btn, .lugar-btn:not(.activo) { color: var(--ceniza); }
+.lugar-btn.activo { color: var(--hueso); border-color: var(--vino-vivo); }
+.lugar-btn.activo::before { background: var(--vino-texto); }
+.retrato .nombre { color: var(--ceniza-oscura); }
+.retrato[aria-selected="true"] .nombre { color: var(--dorado-claro); }
+.retrato[aria-selected="true"] .marco { border-color: var(--dorado); box-shadow: 0 0 0 5px rgba(168, 137, 79, 0.14), 0 0 26px rgba(125, 21, 38, 0.4); }
+.datos dt, .ficha-uso dt, .datos-portada strong, .pestana-galeria .cuenta { color: var(--dorado-claro); }
+.datos-portada { color: var(--ceniza-oscura); }
+
+/* Rojo vino: SOLO subtemas (etiquetas), «Toc», capitular y botones */
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio { color: var(--vino-texto); }
+.titulo-el { color: var(--vino-texto); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
