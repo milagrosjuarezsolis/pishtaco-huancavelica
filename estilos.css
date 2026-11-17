@@ -619,6 +619,34 @@ body::after {
 .carta span { font-size: 0.92rem; }
 footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.5rem; }
 
+/* Escenarios: imágenes oscurecidas, con viñeta y un resplandor rojo, como vistas con una vela */
+.escena-oscura { position: relative; overflow: hidden; background: #000; }
+.escena-oscura img {
+  width: 100%; aspect-ratio: 3 / 2; object-fit: cover; object-position: top;
+  filter: brightness(0.58) contrast(1.25) saturate(0.55) sepia(0.35) hue-rotate(-12deg);
+  transform: scale(1.02); transition: filter 0.8s ease, transform 6s ease;
+}
+.escena-oscura::before {
+  /* viñeta negra y luz roja desde abajo */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 42%, transparent 28%, rgba(0, 0, 0, 0.55) 68%, rgba(0, 0, 0, 0.92) 100%),
+    linear-gradient(0deg, rgba(110, 10, 10, 0.45) 0%, transparent 45%);
+}
+.escena-oscura::after {
+  /* niebla que se mueve lento */
+  content: ""; position: absolute; inset: -20%; z-index: 2; pointer-events: none; opacity: 0.35;
+  background: radial-gradient(ellipse at 30% 70%, rgba(200, 190, 180, 0.22), transparent 55%),
+              radial-gradient(ellipse at 75% 30%, rgba(200, 190, 180, 0.14), transparent 50%);
+  animation: niebla-escena 14s ease-in-out infinite alternate;
+}
+@keyframes niebla-escena { from { transform: translate(-4%, 2%); } to { transform: translate(4%, -2%); } }
+/* al pasar el ratón se acerca y se aclara un poco, como si alguien levantara la vela */
+.panel:hover .escena-oscura img { filter: brightness(0.78) contrast(1.2) saturate(0.7) sepia(0.25) hue-rotate(-8deg); transform: scale(1.07); }
+.panel { border-color: rgba(143, 20, 20, 0.45); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(0, 0, 0, 0.6); }
+.panel .txt { border-top: 2px solid var(--sangre); background: linear-gradient(180deg, #120c0b, #0b0807); }
+.panel h3 { color: #e9cba0; text-shadow: 0 0 20px rgba(194, 38, 31, 0.35); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
