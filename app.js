@@ -99,20 +99,32 @@ function actualizarAvance() {
 
 /* ---------- Mapa ---------- */
 const cajaMapa = document.getElementById("mapa-caja");
+const listaLugares = document.getElementById("lista-lugares");
 const ficha = document.getElementById("ficha");
 LUGARES.forEach((lugar) => {
+  // Punto sobre el mapa
   const boton = document.createElement("button");
   boton.className = "punto";
   boton.style.left = lugar.x + "%";
   boton.style.top = lugar.y + "%";
   boton.setAttribute("aria-label", lugar.titulo);
+  boton.tabIndex = -1; // con teclado se usa la lista de abajo
   boton.innerHTML = '<span class="nombre-punto">' + lugar.titulo + "</span>";
-  boton.addEventListener("click", () => abrirFicha(lugar, boton));
   cajaMapa.appendChild(boton);
+  // Mismo lugar en la lista (más fácil de tocar en celular y con teclado)
+  const item = document.createElement("button");
+  item.className = "lugar-btn";
+  item.textContent = lugar.titulo;
+  listaLugares.appendChild(item);
+  const abrir = () => abrirFicha(lugar, boton, item);
+  boton.addEventListener("click", abrir);
+  item.addEventListener("click", abrir);
 });
-function abrirFicha(lugar, boton) {
-  document.querySelectorAll(".punto.activo").forEach((p) => p.classList.remove("activo"));
+function abrirFicha(lugar, boton, item) {
+  document.querySelectorAll(".punto.activo, .lugar-btn.activo").forEach((p) => p.classList.remove("activo"));
   boton.classList.add("activo", "visto");
+  item.classList.add("activo", "visto");
+  item.setAttribute("aria-pressed", "true");
   vistos.add(lugar.id);
   actualizarAvance();
   ficha.innerHTML =
@@ -266,3 +278,17 @@ function reiniciar() {
 repartir();
 mostrarEscena();
 actualizarAvance();
+
+/* ---------- Aparición suave al bajar (una sola vez por bloque) ---------- */
+if (!reducirMovimiento && "IntersectionObserver" in window) {
+  document.querySelectorAll(
+    "main section:not(.portada) .etiqueta:not(.revelar), main .titulo-seccion:not(.revelar), main .intro, .mapa-grid, .selector, .expediente, .sim-escena, .sim-mano, .panel, .pieza, .recorrido"
+  ).forEach((el) => el.classList.add("revelar"));
+  document.documentElement.classList.add("js-revelar");
+  const aparecer = new IntersectionObserver((entradas) => {
+    entradas.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("visible"); aparecer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(".revelar").forEach((el) => aparecer.observe(el));
+}
