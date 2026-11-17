@@ -18,8 +18,11 @@
   --apagado: #ab9c8b;
   --borde: rgba(233, 185, 110, 0.22);
 
-  --titulo: "Cinzel", Georgia, "Times New Roman", serif;
-  --cuerpo: "Lora", Georgia, serif;
+  /* Tipografías: gótica para los nombres, imprenta antigua para títulos, Garamond para leer */
+  --gotica: "Grenze Gotisch", "IM Fell English SC", Georgia, serif;
+  --titulo: "IM Fell English SC", Georgia, "Times New Roman", serif;
+  --cuerpo: "EB Garamond", Georgia, serif;
+  --cursiva: "IM Fell English", "Cormorant Garamond", Georgia, serif;
 
   /* Escala de tamaños */
   --t-14: 0.875rem;
@@ -545,6 +548,77 @@ footer ul { margin: 0 0 14px; padding-left: 18px; }
   .ficha-uso dd { margin-bottom: 8px; }
   .datos { grid-template-columns: 1fr; }
 }
+/* =========================================================
+   CAPA DE TERROR: tipografía elegante y atmósfera
+   ========================================================= */
+html { font-synthesis: none; }               /* sin negritas falsas en fuentes de un solo grosor */
+body { font-size: 18.5px; line-height: 1.7; letter-spacing: 0.005em; }
+::selection { background: var(--sangre); color: #fff4e6; }
+
+/* Grano de película antigua sobre toda la página */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 300; pointer-events: none; opacity: 0.09; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* Títulos de sección: imprenta antigua, más grandes, con un halo rojo apenas visible */
+.titulo-seccion {
+  font-family: var(--titulo); font-weight: 400; letter-spacing: 0.02em;
+  font-size: clamp(2.3rem, 5.4vw, 3.4rem); color: #f1e2c6;
+  text-shadow: 0 0 28px rgba(143, 20, 20, 0.35);
+}
+.etiqueta { font-size: 0.85rem; letter-spacing: 0.3em; color: #c98a5e; }
+.etiqueta::before { background: linear-gradient(90deg, transparent, var(--sangre-viva)); width: 36px; }
+.intro { font-size: 1.08rem; color: #b7a896; }
+
+/* Portada: el nombre en gótica, como grabado en hueso y sangre seca */
+.titulo-nombre {
+  font-family: var(--gotica); font-weight: 700; text-transform: none; letter-spacing: 0.01em;
+  font-size: clamp(4.2rem, 13vw, 9rem); line-height: 0.88;
+  background: linear-gradient(180deg, #fbf0dc 0%, #e8c9a0 40%, #b0643f 78%, #7a1010 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.portada h1 { animation: vela 6s ease-in-out infinite; }
+@keyframes vela {
+  0%, 100% { filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 18px rgba(194, 38, 31, 0.18)); }
+  45% { filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 30px rgba(194, 38, 31, 0.32)); }
+  50% { filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 12px rgba(194, 38, 31, 0.12)); }
+  55% { filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 26px rgba(194, 38, 31, 0.28)); }
+}
+.titulo-el, .titulo-lugar { font-family: var(--cursiva); font-weight: 400; }
+.titulo-el { color: #c98a5e; }
+.portada .bajada { font-family: var(--cursiva); font-size: clamp(1.2rem, 2vw, 1.38rem); color: #ddd0bc; }
+.sello { font-size: 0.8rem; letter-spacing: 0.32em; }
+.portada::before {
+  /* viñeta: los bordes de la portada se oscurecen como una foto vieja */
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 60% 45%, transparent 45%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* Menú y botones con letra de imprenta antigua */
+.marca { font-family: var(--gotica); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.02em; }
+.menu a { font-size: 0.95rem; letter-spacing: 0.08em; }
+.menu a::after { background: var(--sangre-viva); }
+.boton { font-weight: 400; font-size: 1.02rem; letter-spacing: 0.12em; text-transform: none; border-radius: 1px; }
+.boton.chico { font-size: 0.92rem; }
+
+/* Historia: capitular gótica en rojo */
+.relato p:first-child::first-letter { font-family: var(--gotica); font-weight: 700; color: var(--sangre-viva); font-size: 4.2em; padding-top: 4px; text-shadow: 0 0 18px rgba(194, 38, 31, 0.35); }
+.nota { font-family: var(--cursiva); font-weight: 400; color: #f0d6b0; border-left-color: var(--sangre-viva); }
+.toc-grande { font-family: var(--gotica); font-weight: 700; text-transform: none; letter-spacing: 0.06em; font-size: clamp(3rem, 11vw, 8rem); }
+.cierre, .foto-lugar figcaption, .frase { font-family: var(--cursiva); }
+
+/* Nombres de personajes y de las piezas en gótica */
+.dossier h3 { font-family: var(--gotica); font-weight: 700; text-transform: none; letter-spacing: 0.01em; font-size: clamp(3rem, 6.4vw, 5rem); line-height: 0.9;
+  background: linear-gradient(180deg, #fbf0dc 0%, #e8c9a0 45%, #b0643f 85%, #7a1010 100%); -webkit-background-clip: text; background-clip: text; }
+.pieza h3 { font-family: var(--titulo); font-weight: 400; font-size: clamp(2rem, 4.4vw, 2.8rem); }
+.pieza .numero { font-family: var(--gotica); font-weight: 500; -webkit-text-stroke: 1px rgba(194, 38, 31, 0.6); }
+.linea-tiempo strong { font-family: var(--titulo); font-weight: 400; }
+.escena h3, .ficha h3, .panel h3 { font-family: var(--titulo); font-weight: 400; font-size: 1.6rem; }
+.retrato .nombre, .carta span, .lugar-btn, .datos dt, .ficha-uso dt, .folio, .medio { font-weight: 400; }
+.carta span { font-size: 0.92rem; }
+footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.5rem; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
