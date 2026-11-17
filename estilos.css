@@ -1217,6 +1217,182 @@ body, .relato, .intro, .pieza .texto p, .panel p, .acordeon details p, .datos dd
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
+/* =========================================================
+   ESTILO MISTERIOSO Y ANDINO
+   Paleta: dorado, rojo vino y beige sobre noche andina.
+   Tipografía: Cinzel (títulos) + Inter (texto).
+   Motivos: chakana (cruz andina escalonada) y bandas de tejido.
+   ========================================================= */
+:root {
+  --noche: #0c0907;
+  --noche-2: #120d0a;
+  --beige: #e9dcc3;
+  --beige-suave: #b8a98f;
+  --dorado: #c9a24e;
+  --dorado-claro: #e7cf94;
+  --dorado-oscuro: #8a6a2a;
+  --vino: #5c1220;
+  --vino-medio: #7a1a2b;
+  --vino-vivo: #9a2236;
+  --vino-texto: #c8546b;     /* vino legible sobre la noche */
+  --ceniza: var(--beige);
+  --ceniza-oscura: var(--beige-suave);
+  --hueso: var(--beige);
+  --letra-vino: var(--beige);
+  --letra-vino-suave: var(--beige-suave);
+  --rojo-subtema: var(--vino-texto);
+  --texto: var(--beige);
+  --champan: var(--beige);
+  --apagado: var(--beige-suave);
+  --oro: var(--dorado-claro);
+  --cobre: var(--dorado);
+  --sangre: var(--vino);
+  --sangre-viva: var(--vino-vivo);
+  --luna: var(--vino-vivo);
+  --borde: rgba(201, 162, 78, 0.2);
+  --gotica: "Cinzel", Georgia, serif;
+  --titulo: "Cinzel", Georgia, serif;
+  --versalita: "Cinzel", Georgia, serif;
+  --cursiva: "Inter", system-ui, sans-serif;
+  --cuerpo: "Inter", system-ui, sans-serif;
+  /* chakana: cruz andina escalonada */
+  --chakana: polygon(35% 0, 65% 0, 65% 15%, 85% 15%, 85% 35%, 100% 35%, 100% 65%, 85% 65%, 85% 85%, 65% 85%, 65% 100%, 35% 100%, 35% 85%, 15% 85%, 15% 65%, 0 65%, 0 35%, 15% 35%, 15% 15%, 35% 15%);
+  /* banda de tejido: rombos escalonados dorados con centro vino */
+  --tejido: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='16' viewBox='0 0 32 16'%3E%3Crect width='32' height='1' fill='%23c9a24e' fill-opacity='.55'/%3E%3Crect y='15' width='32' height='1' fill='%23c9a24e' fill-opacity='.55'/%3E%3Cpath d='M14 3h4v2h2v2h2v2h-2v2h-2v2h-4v-2h-2v-2h-2V7h2V5h2z' fill='%23c9a24e' fill-opacity='.7'/%3E%3Crect x='15' y='7' width='2' height='2' fill='%239a2236'/%3E%3Cpath d='M0 8h6M26 8h6' stroke='%239a2236' stroke-width='1'/%3E%3C/svg%3E");
+}
+body { background: var(--noche); color: var(--beige); font-family: "Inter", system-ui, sans-serif; font-weight: 300; font-size: 16.5px; line-height: 1.8; letter-spacing: 0.005em; }
+strong { color: var(--dorado-claro); font-weight: 500; }
+::selection { background: var(--vino-medio); color: var(--beige); }
+
+/* ---- Texto de lectura: Inter, beige ---- */
+.relato, .relato p, #historia .relato, #historia .relato p, .intro, .pieza .texto p, .panel p, .acordeon details p,
+.datos dd, .ficha-uso dd, .portada .bajada, .escena, .escena .pregunta, .tablero ol, .linea-tiempo li > span:last-child,
+.puente, .leyenda, .progreso-texto, .miniatura span, .frase, .cierre, .lema, footer {
+  font-family: "Inter", system-ui, sans-serif; color: var(--beige); text-shadow: none;
+}
+#historia .relato p { font-weight: 300; font-size: 1.04rem; line-height: 1.85; }
+.intro, .leyenda, .progreso-texto, .puente, .foto-lugar figcaption, .visor figcaption { color: var(--beige-suave); }
+.foto-lugar figcaption, .visor figcaption, .frase, .cierre, .lema { font-family: "Inter", system-ui, sans-serif; font-style: italic; font-weight: 300; }
+.portada .bajada { font-style: normal; font-weight: 300; font-size: clamp(1.02rem, 1.6vw, 1.15rem); line-height: 1.8; }
+.frase { font-size: 1.05rem; line-height: 1.75; }
+.cierre { font-size: 1.1rem; }
+.lema { font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--dorado-claro); letter-spacing: 0.03em; }
+
+/* ---- Títulos: Cinzel ---- */
+.titulo-nombre, .dossier h3, .titulo-seccion, .pieza h3, .panel h3, .escena h3, .linea-tiempo strong, .acordeon summary,
+.marca, footer h3, .titulo-el, .titulo-lugar, .banner-frase, .nota, .toc-grande, .relato p:first-child::first-letter,
+.menu a, .boton, .boton-golpes, .pestana-galeria, .retrato .nombre, .carta span, .lugar-btn, .datos dt, .ficha-uso dt,
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio, .datos-portada, .ficha h3, .tablero h4, .escena .lugar, .numero {
+  font-family: "Cinzel", Georgia, serif; font-style: normal;
+}
+
+/* Nombre de la portada y de los personajes: dorado labrado */
+.titulo-nombre {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; line-height: 1;
+  font-size: clamp(2.9rem, 9vw, 6.4rem);
+  background: linear-gradient(180deg, #f6e7bd 0%, #e2c27a 35%, #c9a24e 60%, #8a6a2a 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.dossier h3 {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.05;
+  background: linear-gradient(180deg, #f6e7bd 0%, #e2c27a 40%, #c9a24e 65%, #8a6a2a 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.portada h1 { filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(201, 162, 78, 0.18)); }
+.titulo-el { font-weight: 500; font-size: clamp(1.6rem, 3.2vw, 2.4rem); color: var(--vino-texto); text-transform: none; letter-spacing: 0.08em; text-shadow: 0 0 16px rgba(154, 34, 54, 0.6); }
+.titulo-lugar { font-weight: 500; font-size: clamp(1.05rem, 2.2vw, 1.5rem); letter-spacing: 0.32em; text-transform: uppercase; color: var(--beige); }
+.titulo-lugar::before, .titulo-lugar::after { background: linear-gradient(90deg, transparent, var(--dorado)); }
+
+/* Títulos de sección: dorado, Cinzel */
+.titulo-seccion {
+  font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: clamp(1.8rem, 4vw, 2.7rem);
+  color: var(--dorado); text-shadow: 0 0 24px rgba(201, 162, 78, 0.15);
+}
+.pieza h3, .panel h3, .escena h3, .linea-tiempo strong, .acordeon summary, footer h3, .ficha h3 {
+  font-weight: 600; text-transform: none; letter-spacing: 0.04em; color: var(--dorado-claro); background: none;
+}
+.pieza h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+.escena h3, .panel h3 { font-size: 1.3rem; }
+.linea-tiempo strong { font-size: clamp(1.1rem, 1.8vw, 1.4rem); }
+.acordeon summary { font-size: clamp(0.98rem, 1.6vw, 1.12rem); color: var(--beige); }
+.acordeon details[open] summary { color: var(--dorado-claro); }
+.ficha h3 { color: var(--vino-medio); }
+.banner-frase { font-weight: 500; font-size: clamp(1.4rem, 3vw, 2.3rem); line-height: 1.35; color: var(--beige); letter-spacing: 0.02em; }
+.nota { font-weight: 500; font-size: clamp(1.3rem, 2.6vw, 1.9rem); color: var(--dorado-claro); border-left-color: var(--vino-vivo); }
+.marca { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dorado); }
+footer h3 { font-size: 1.15rem; letter-spacing: 0.08em; }
+.pieza .numero { font-weight: 700; color: transparent; -webkit-text-stroke: 1px rgba(201, 162, 78, 0.55); }
+
+/* «Toc» y capitular en vino */
+.toc-grande { font-weight: 700; letter-spacing: 0.08em; font-size: clamp(2.2rem, 7.6vw, 5.6rem); color: var(--vino-vivo); text-shadow: 0 0 40px rgba(154, 34, 54, 0.85), 0 0 10px rgba(200, 84, 107, 0.4); }
+.relato p:first-child::first-letter { font-weight: 700; font-size: 3.6em; color: var(--dorado); text-shadow: 0 0 16px rgba(201, 162, 78, 0.35); padding: 6px 12px 0 0; }
+
+/* ---- Subtemas en rojo vino, con chakana ---- */
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio {
+  font-weight: 600; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--vino-texto); text-shadow: 0 0 12px rgba(154, 34, 54, 0.55);
+}
+.etiqueta::before { background: linear-gradient(90deg, transparent, var(--vino-texto)); }
+.etiqueta::after, .sello::before {
+  width: 11px; height: 11px; transform: none; background: var(--dorado); box-shadow: none; clip-path: var(--chakana);
+}
+.banner-sup { font-size: 0.86rem; }
+
+/* ---- Menú y controles ---- */
+.menu a { font-weight: 500; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--beige); }
+.menu a:hover, .menu a.activo { color: var(--dorado-claro); }
+.menu a::after { background: var(--vino-vivo); }
+.boton {
+  font-weight: 600; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige);
+  background: linear-gradient(180deg, var(--vino-medio), var(--vino)); border: 1px solid var(--dorado-oscuro); border-radius: 2px;
+}
+.boton:hover { border-color: var(--dorado); background: linear-gradient(180deg, var(--vino-vivo), var(--vino-medio)); }
+.boton.fantasma { background: rgba(12, 9, 7, 0.4); color: var(--dorado-claro); border-color: rgba(201, 162, 78, 0.55); }
+.boton.fantasma:hover { background: rgba(201, 162, 78, 0.1); border-color: var(--dorado); }
+.boton.chico { font-size: 0.72rem; }
+.boton-golpes { font-weight: 600; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige); border-color: rgba(154, 34, 54, 0.8); }
+.pestana-galeria { font-weight: 500; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--beige-suave); }
+.pestana-galeria[aria-selected="true"] { color: var(--dorado-claro); border-bottom-color: var(--vino-vivo); }
+.retrato .nombre { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--beige-suave); }
+.retrato[aria-selected="true"] .nombre { color: var(--dorado-claro); }
+.retrato[aria-selected="true"] .marco { border-color: var(--dorado); box-shadow: 0 0 0 5px rgba(201, 162, 78, 0.14), 0 0 26px rgba(154, 34, 54, 0.4); }
+.carta span { font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em; }
+.lugar-btn, .lugar-btn:not(.activo) { font-weight: 500; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--beige); }
+.lugar-btn.activo { color: var(--dorado-claro); border-color: var(--dorado); }
+.datos dt, .ficha-uso dt { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dorado); }
+.datos-portada { font-weight: 500; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--beige-suave); }
+.datos-portada strong { color: var(--dorado); font-weight: 700; }
+.tablero h4 { color: var(--dorado-claro); letter-spacing: 0.08em; }
+.escena .lugar { color: var(--vino-texto); letter-spacing: 0.14em; font-size: 0.78rem; text-transform: uppercase; }
+
+/* ---- Motivos andinos ---- */
+/* Línea de tiempo: chakanas doradas en lugar de rombos */
+.linea-tiempo .rombo, .linea-tiempo li:last-child .rombo {
+  width: 20px; height: 20px; border: 0; transform: translateX(-50%); clip-path: var(--chakana);
+  background: var(--dorado); box-shadow: none;
+}
+.linea-tiempo li:last-child .rombo { background: var(--vino-texto); }
+.linea-tiempo::before { background: linear-gradient(90deg, transparent, var(--dorado-oscuro) 8%, var(--dorado-oscuro) 92%, transparent); opacity: 0.8; }
+@media (max-width: 900px) {
+  .linea-tiempo .rombo, .linea-tiempo li:last-child .rombo { left: -1px; transform: none; }
+  .linea-tiempo::before { background: var(--dorado-oscuro); }
+}
+/* Divisor con chakana */
+.divisor { color: var(--dorado); }
+.divisor span { width: 14px; height: 14px; border: 0; transform: none; background: var(--dorado); clip-path: var(--chakana); }
+/* Bandas de tejido andino al inicio de las secciones */
+#historia, #mapa, #escenarios, #galeria, #transmedia, #preguntas { position: relative; }
+#historia::before, #mapa::before, #escenarios::before, #galeria::before, #transmedia::before, #preguntas::before, footer::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 16px; background: var(--tejido) repeat-x center / 32px 16px; opacity: 0.55;
+}
+footer { position: relative; border-top: 0; background: #080605; color: var(--beige-suave); }
+.marca .luna { background: var(--dorado); clip-path: var(--chakana); border-radius: 0; box-shadow: none; width: 16px; height: 16px; }
+/* Miniaturas y paneles con borde dorado tenue */
+.panel, .miniatura, .escena, .expediente, .tablero { border-color: rgba(201, 162, 78, 0.22); }
+.miniatura:hover, .miniatura:focus-visible { border-color: var(--dorado); box-shadow: 0 0 0 1px rgba(201, 162, 78, 0.3), 0 18px 40px rgba(92, 18, 32, 0.45); }
+.acordeon summary::after { border-color: var(--dorado); }
+.punto::before { border-color: var(--dorado-claro); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
