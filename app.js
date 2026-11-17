@@ -331,6 +331,139 @@ repartir();
 mostrarEscena();
 actualizarAvance();
 
+/* ---------- Toc. Toc. Toc.: golpes con sonido (Web Audio, sin archivos) ---------- */
+let audio = null, salidaAudio = null;
+function prepararAudio() {
+  if (audio) return;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return;
+  audio = new Ctx();
+  salidaAudio = audio.createGain();
+  salidaAudio.gain.value = 0.7;
+  salidaAudio.connect(audio.destination);
+  // eco de cueva
+  const eco = audio.createDelay(); eco.delayTime.value = 0.21;
+  const retorno = audio.createGain(); retorno.gain.value = 0.32;
+  const filtroEco = audio.createBiquadFilter(); filtroEco.type = "lowpass"; filtroEco.frequency.value = 1200;
+  salidaAudio.connect(eco); eco.connect(filtroEco); filtroEco.connect(retorno); retorno.connect(eco); retorno.connect(audio.destination);
+}
+function sonarGolpe(t) {
+  // golpe grave en madera
+  const osc = audio.createOscillator(), g = audio.createGain();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(150, t);
+  osc.frequency.exponentialRampToValueAtTime(48, t + 0.2);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(1, t + 0.006);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.38);
+  osc.connect(g); g.connect(salidaAudio); osc.start(t); osc.stop(t + 0.42);
+  // chasquido de la puerta
+  const largo = Math.floor(audio.sampleRate * 0.09), buffer = audio.createBuffer(1, largo, audio.sampleRate), datos = buffer.getChannelData(0);
+  for (let i = 0; i < largo; i++) datos[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / largo, 4);
+  const ruido = audio.createBufferSource(); ruido.buffer = buffer;
+  const filtro = audio.createBiquadFilter(); filtro.type = "bandpass"; filtro.frequency.value = 700; filtro.Q.value = 1.4;
+  const g2 = audio.createGain(); g2.gain.value = 0.8;
+  ruido.connect(filtro); filtro.connect(g2); g2.connect(salidaAudio); ruido.start(t);
+}
+const destello = document.createElement("div");
+destello.className = "destello"; destello.setAttribute("aria-hidden", "true");
+document.body.appendChild(destello);
+const bloqueGolpes = document.querySelector(".golpes");
+const palabrasToc = document.querySelectorAll(".toc-grande span");
+function reiniciarClase(el, clase) { el.classList.remove(clase); void el.offsetWidth; el.classList.add(clase); }
+function tocarPuerta() {
+  prepararAudio();
+  if (audio && audio.state === "suspended") audio.resume();
+  const inicio = audio ? audio.currentTime + 0.05 : 0;
+  palabrasToc.forEach((palabra, i) => {
+    if (audio) sonarGolpe(inicio + i * 0.62);
+    setTimeout(() => {
+      reiniciarClase(palabra, "golpeando");
+      reiniciarClase(bloqueGolpes, "temblando");
+      reiniciarClase(destello, "activo");
+    }, 50 + i * 620);
+  });
+}
+document.getElementById("tocar").addEventListener("click", tocarPuerta);
+document.querySelector(".toc-grande").addEventListener("click", tocarPuerta);
+
+/* ---------- Brasas que suben en la portada ---------- */
+const lienzo = document.querySelector(".brasas");
+if (lienzo && !reducirMovimiento && lienzo.getContext) {
+  const ctx = lienzo.getContext("2d");
+  let ancho = 0, alto = 0, visible = true, corriendo = false;
+  const brasas = [];
+  function medir() {
+    const r = lienzo.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+    ancho = r.width; alto = r.height;
+    lienzo.width = ancho * dpr; lienzo.height = alto * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function nuevaBrasa(alInicio) {
+    return { x: ancho * (0.3 + Math.random() * 0.7), y: alInicio ? Math.random() * alto : alto + 10,
+      r: 0.6 + Math.random() * 1.9, v: 0.25 + Math.random() * 0.75, fase: Math.random() * 6.3, brillo: 0.4 + Math.random() * 0.6 };
+  }
+  medir();
+  for (let i = 0; i < (window.innerWidth < 600 ? 22 : 46); i++) brasas.push(nuevaBrasa(true));
+  window.addEventListener("resize", medir);
+  function dibujar() {
+    if (!visible) { corriendo = false; return; }
+    ctx.clearRect(0, 0, ancho, alto);
+    brasas.forEach((b) => {
+      b.y -= b.v; b.fase += 0.025; b.x += Math.sin(b.fase) * 0.35;
+      const a = Math.max(0, Math.min(1, b.y / alto)) * b.brillo;
+      ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255," + (70 + Math.round(b.r * 35)) + ",45," + a.toFixed(2) + ")";
+      ctx.shadowColor = "rgba(255,50,20,0.9)"; ctx.shadowBlur = 10;
+      ctx.fill();
+      if (b.y < -10) Object.assign(b, nuevaBrasa(false));
+    });
+    requestAnimationFrame(dibujar);
+  }
+  new IntersectionObserver(([e]) => {
+    visible = e.isIntersecting;
+    if (visible && !corriendo) { corriendo = true; requestAnimationFrame(dibujar); }
+  }).observe(lienzo);
+}
+
+/* ---------- Inclinación 3D al pasar el ratón (solo con ratón) ---------- */
+const INCLINABLES = ".lamina, .miniatura, .escena-oscura, .figura";
+if (!reducirMovimiento && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  document.documentElement.classList.add("con-3d");
+  let actual = null;
+  const soltar = () => {
+    if (!actual) return;
+    actual.classList.remove("inclinando");
+    actual.style.setProperty("--rx", "0deg"); actual.style.setProperty("--ry", "0deg");
+    actual = null;
+  };
+  document.addEventListener("pointermove", (e) => {
+    const el = e.target.closest ? e.target.closest(INCLINABLES) : null;
+    if (el !== actual) soltar();
+    if (!el) return;
+    actual = el;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    el.classList.add("inclinando");
+    el.style.setProperty("--ry", ((px - 0.5) * 12).toFixed(2) + "deg");
+    el.style.setProperty("--rx", ((0.5 - py) * 10).toFixed(2) + "deg");
+    el.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+    el.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+  });
+  document.addEventListener("pointerleave", soltar);
+
+  /* Linterna en el banner: la luz sigue al ratón */
+  const banner = document.querySelector(".banner-cine"), fondoBanner = document.querySelector(".fondo-banner");
+  if (banner && fondoBanner) {
+    banner.classList.add("con-linterna");
+    banner.addEventListener("pointermove", (e) => {
+      const r = fondoBanner.getBoundingClientRect();
+      fondoBanner.style.setProperty("--lx", (e.clientX - r.left) + "px");
+      fondoBanner.style.setProperty("--ly", (e.clientY - r.top) + "px");
+    });
+  }
+}
+
 /* ---------- Aparición suave al bajar (una sola vez por bloque) ---------- */
 if (!reducirMovimiento && "IntersectionObserver" in window) {
   document.querySelectorAll(

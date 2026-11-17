@@ -776,6 +776,106 @@ footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.5rem; }
   .banner-cine::before, .banner-cine::after { display: none; }
 }
 
+/* =========================================================
+   LETRAS ROJAS MÁS ELEGANTES
+   Versalitas de imprenta antigua (sin mayúsculas forzadas), un poco más grandes,
+   con brillo de brasa y un ornamento: línea + rombo.
+   ========================================================= */
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio {
+  font-family: var(--titulo); font-weight: 400; text-transform: none;
+  font-size: 1.12rem; letter-spacing: 0.14em;
+  color: #ec5446;
+  text-shadow: 0 0 14px rgba(196, 22, 28, 0.55), 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+.etiqueta { gap: 12px; }
+.etiqueta::before { order: -2; width: 40px; height: 1px; background: linear-gradient(90deg, transparent, #ec5446); }
+.etiqueta::after { content: ""; order: -1; width: 6px; height: 6px; background: #ec5446; transform: rotate(45deg); box-shadow: 0 0 8px rgba(236, 84, 70, 0.8); }
+.banner-sup { font-size: 1.2rem; letter-spacing: 0.22em; }
+.sello { font-size: 1.05rem; letter-spacing: 0.16em; }
+.folio { font-size: 1rem; }
+.pieza .medio { font-size: 1.1rem; }
+.ficha .etiqueta { color: var(--sangre); text-shadow: none; }
+.ficha .etiqueta::after { display: none; }
+.titulo-el { text-shadow: 0 0 18px rgba(196, 22, 28, 0.6); }
+
+/* =========================================================
+   GALERÍA CON EFECTO ROJO Y OSCURO
+   ========================================================= */
+.miniatura img { filter: brightness(0.55) contrast(1.25) saturate(0.55) sepia(0.35) hue-rotate(-12deg); }
+.miniatura::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 30%, rgba(0, 0, 0, 0.6) 72%, rgba(0, 0, 0, 0.9) 100%),
+    linear-gradient(0deg, rgba(120, 10, 10, 0.55) 0%, transparent 50%);
+  transition: opacity 0.4s;
+}
+.miniatura::after {
+  /* reflejo rojo que sigue al ratón */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 60, 40, 0.28), transparent 45%);
+}
+.miniatura span { z-index: 2; }
+.miniatura:hover::after, .miniatura:focus-visible::after { opacity: 1; }
+.miniatura:hover img, .miniatura:focus-visible img { filter: brightness(0.85) contrast(1.15) saturate(0.8) sepia(0.2) hue-rotate(-8deg); }
+.miniatura:hover, .miniatura:focus-visible { border-color: rgba(236, 84, 70, 0.8); box-shadow: 0 0 0 1px rgba(196, 22, 28, 0.4), 0 18px 40px rgba(120, 0, 0, 0.45); }
+
+/* =========================================================
+   TOC. TOC. TOC. CON SONIDO
+   ========================================================= */
+.toc-grande { cursor: pointer; user-select: none; }
+.toc-grande span.golpeando { animation: golpe-fuerte 0.5s cubic-bezier(.2, .8, .2, 1) both !important; animation-delay: 0s !important; }
+@keyframes golpe-fuerte {
+  0% { opacity: 1; transform: scale(1.4); color: #ff6a55; text-shadow: 0 0 70px rgba(255, 40, 30, 1), 0 0 20px rgba(255, 120, 90, 0.9); }
+  100% { opacity: 1; transform: none; }
+}
+.golpes.temblando { animation: temblor-seccion 0.32s linear; }
+@keyframes temblor-seccion {
+  20% { transform: translate(-4px, 2px); } 40% { transform: translate(4px, -2px); }
+  60% { transform: translate(-3px, 1px); } 80% { transform: translate(2px, -1px); } 100% { transform: none; }
+}
+.destello {
+  position: fixed; inset: 0; z-index: 250; pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(140, 0, 0, 0.45) 100%);
+}
+.destello.activo { animation: destello 0.55s ease-out; }
+@keyframes destello { 0% { opacity: 1; } 100% { opacity: 0; } }
+.boton-golpes {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; min-height: 48px; padding: 10px 22px; cursor: pointer;
+  font-family: var(--titulo); font-size: 1.05rem; letter-spacing: 0.1em; color: #f1e9de;
+  background: rgba(196, 22, 28, 0.12); border: 1px solid rgba(236, 84, 70, 0.6); border-radius: 999px;
+  box-shadow: 0 0 24px rgba(196, 22, 28, 0.25); transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.boton-golpes svg { color: #ec5446; }
+.boton-golpes:hover { background: rgba(196, 22, 28, 0.28); box-shadow: 0 0 34px rgba(196, 22, 28, 0.5); transform: translateY(-2px); }
+
+/* =========================================================
+   BRASAS, 3D Y LINTERNA
+   ========================================================= */
+.brasas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; mix-blend-mode: screen; }
+
+/* Inclinación 3D: las láminas, miniaturas y escenarios se giran hacia el ratón */
+.con-3d :is(.lamina, .miniatura, .escena-oscura, .figura) {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(var(--giro, 0deg));
+  transition: transform 0.45s cubic-bezier(.2, .8, .2, 1), box-shadow 0.3s;
+}
+.con-3d :is(.lamina, .miniatura, .escena-oscura, .figura).inclinando {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(0deg) scale(1.03);
+  transition: transform 0.08s linear, box-shadow 0.3s;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(160, 10, 10, 0.25);
+}
+.lamina::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 245, 225, 0.22), transparent 50%);
+}
+.lamina.inclinando::after { opacity: 1; }
+
+/* Linterna: el banner está oscuro y se ilumina donde está el ratón */
+.fondo-banner::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 0.5s;
+  background: radial-gradient(circle 260px at var(--lx, 60%) var(--ly, 40%), transparent 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.82) 100%);
+}
+.con-linterna .fondo-banner::after { opacity: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
