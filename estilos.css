@@ -942,6 +942,120 @@ footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.5rem; }
 footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.3rem; }
 .pieza .numero { font-weight: 700; }
 
+/* =========================================================
+   VINO TINTO Y DORADO · TIPOGRAFÍA FINA
+   Letras rojas → vino tinto. Todo lo demás → dorado.
+   ========================================================= */
+:root {
+  --vino: #5e0e1b;
+  --vino-medio: #7d1526;
+  --vino-vivo: #a3203a;
+  --vino-texto: #c4415d;     /* vino legible para letras pequeñas sobre negro */
+  --dorado: #d4af5f;
+  --dorado-claro: #f0dca0;
+  --dorado-oscuro: #9b7a35;
+  --champan: #e9dfc6;
+  /* las variables antiguas pasan a vino y dorado */
+  --sangre: var(--vino);
+  --sangre-viva: var(--vino-vivo);
+  --luna: var(--vino-vivo);
+  --oro: var(--dorado-claro);
+  --cobre: var(--dorado);
+  --texto: var(--champan);
+  --borde: rgba(212, 175, 95, 0.18);
+  --titulo: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
+  --cursiva: "Cormorant Garamond", Georgia, serif;
+  --gotica: "Cinzel Decorative", Georgia, serif;
+}
+body { color: var(--champan); }
+::selection { background: var(--vino-medio); color: var(--dorado-claro); }
+
+/* ---- Dorado: nombres con degradado de oro ---- */
+.titulo-nombre, .dossier h3 {
+  font-family: var(--gotica); font-weight: 400; letter-spacing: 0.05em;
+  background: linear-gradient(180deg, #fff6d6 0%, #efd590 32%, #cfa04a 66%, #8a6424 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.titulo-nombre { font-size: clamp(3rem, 9.4vw, 6.8rem); }
+.portada h1 { animation: none; filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 22px rgba(212, 175, 95, 0.22)); }
+
+/* ---- Dorado: títulos finos en mayúsculas espaciadas ---- */
+.titulo-seccion {
+  font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; text-transform: uppercase;
+  letter-spacing: 0.16em; font-size: clamp(1.9rem, 4.4vw, 3rem); color: var(--dorado);
+  text-shadow: 0 0 26px rgba(212, 175, 95, 0.18);
+}
+.pieza h3, .panel h3, .escena h3, .linea-tiempo strong, .acordeon summary, footer h3 {
+  font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--dorado); background: none; -webkit-background-clip: border-box; background-clip: border-box; text-shadow: none;
+}
+.pieza h3 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); }
+.escena h3, .panel h3 { font-size: 1.35rem; }
+.linea-tiempo strong { font-size: clamp(1.15rem, 1.9vw, 1.5rem); }
+.acordeon summary { font-size: clamp(1rem, 1.8vw, 1.18rem); color: var(--dorado-claro); }
+footer h3 { font-family: var(--gotica); text-transform: none; letter-spacing: 0.03em; font-size: 1.25rem; }
+.titulo-lugar, .lema, .banner-frase, .nota, .cierre, .frase { font-family: var(--cursiva); font-weight: 400; }
+.titulo-lugar { color: var(--dorado-claro); }
+.lema { color: var(--dorado); text-shadow: 0 0 18px rgba(125, 21, 38, 0.6); }
+.banner-frase, .nota { color: var(--dorado-claro); }
+.cierre, .frase, .portada .bajada { color: var(--champan); }
+.titulo-lugar::before, .titulo-lugar::after { background: linear-gradient(90deg, transparent, var(--dorado)); }
+.marca { font-weight: 400; color: var(--dorado); }
+.marca .luna { background: radial-gradient(circle at 35% 35%, #fff2c4, var(--dorado) 55%, #7a5a20); box-shadow: 0 0 14px rgba(212, 175, 95, 0.6); }
+.datos-portada { color: var(--champan); }
+.datos-portada strong, .pestana-galeria .cuenta, .datos dt, .ficha-uso dt { color: var(--dorado); }
+.pieza .numero { color: transparent; -webkit-text-stroke: 1px rgba(212, 175, 95, 0.6); font-weight: 400; }
+.linea-tiempo .rombo { border-color: var(--dorado); box-shadow: 0 0 12px rgba(212, 175, 95, 0.45); }
+.linea-tiempo li:last-child .rombo { background: var(--dorado); }
+
+/* ---- Menú, botones y etiquetas: versalitas finas ---- */
+.menu a { font-family: var(--titulo); font-weight: 500; font-size: 1.02rem; letter-spacing: 0.14em; color: var(--dorado-claro); }
+.menu a::after { background: var(--vino-vivo); }
+@media (max-width: 1440px) { .menu a { font-size: 0.95rem; letter-spacing: 0.08em; padding-inline: 8px; } .barra .boton.chico { letter-spacing: 0.08em; padding-inline: 14px; } }
+.boton, .boton-golpes, .pestana-galeria, .retrato .nombre, .carta span, .lugar-btn {
+  font-family: var(--titulo); font-weight: 600; text-transform: none;
+}
+.boton {
+  font-size: 1.08rem; letter-spacing: 0.14em; color: var(--dorado-claro);
+  background: linear-gradient(180deg, var(--vino-medio), var(--vino)); border: 1px solid var(--dorado-oscuro);
+  box-shadow: 0 0 0 4px rgba(94, 14, 27, 0.25), 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+.boton:hover { background: linear-gradient(180deg, var(--vino-vivo), var(--vino-medio)); border-color: var(--dorado); }
+.boton.chico { font-size: 0.98rem; }
+.boton.fantasma { background: rgba(0, 0, 0, 0.35); border-color: var(--dorado-oscuro); color: var(--dorado-claro); box-shadow: none; }
+.boton.fantasma:hover { background: rgba(212, 175, 95, 0.1); border-color: var(--dorado); }
+.boton-golpes { font-size: 1.08rem; letter-spacing: 0.12em; color: var(--dorado-claro); border-color: rgba(163, 32, 58, 0.8); background: rgba(94, 14, 27, 0.25); }
+.boton-golpes svg { color: var(--vino-texto); }
+.pestana-galeria { font-size: 1.1rem; letter-spacing: 0.08em; }
+.pestana-galeria[aria-selected="true"] { color: var(--dorado-claro); border-bottom-color: var(--vino-vivo); }
+.retrato .nombre { font-size: 0.95rem; letter-spacing: 0.08em; }
+.retrato[aria-selected="true"] .nombre { color: var(--dorado); }
+.retrato[aria-selected="true"] .marco { border-color: var(--dorado); box-shadow: 0 0 0 5px rgba(212, 175, 95, 0.16), 0 0 30px rgba(212, 175, 95, 0.3); }
+.carta span { font-size: 0.95rem; }
+.lugar-btn { font-size: 0.95rem; color: var(--dorado-claro); }
+.lugar-btn.activo { border-color: var(--dorado); color: #fff3d4; }
+.lugar-btn.activo::before { background: var(--dorado); }
+
+/* ---- Vino tinto: todas las letras rojas ---- */
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio {
+  font-family: var(--titulo); font-weight: 600; font-size: 1.12rem; letter-spacing: 0.22em;
+  color: var(--vino-texto); text-shadow: 0 0 14px rgba(125, 21, 38, 0.75), 0 1px 0 rgba(0, 0, 0, 0.9);
+}
+.etiqueta::before { background: linear-gradient(90deg, transparent, var(--vino-texto)); }
+.etiqueta::after, .sello::before { background: var(--vino-texto); box-shadow: 0 0 8px rgba(163, 32, 58, 0.8); }
+.titulo-el { font-family: var(--cursiva); font-weight: 400; color: var(--vino-texto); text-shadow: 0 0 18px rgba(125, 21, 38, 0.8); }
+.toc-grande { font-weight: 400; color: var(--vino-vivo); text-shadow: 0 0 40px rgba(125, 21, 38, 0.9), 0 0 12px rgba(163, 32, 58, 0.5); }
+@keyframes golpe-fuerte {
+  0% { opacity: 1; transform: scale(1.4); color: #d23a55; text-shadow: 0 0 70px rgba(163, 32, 58, 1), 0 0 20px rgba(240, 220, 160, 0.6); }
+  100% { opacity: 1; transform: none; }
+}
+.relato p:first-child::first-letter { font-weight: 400; color: var(--vino-vivo); text-shadow: 0 0 18px rgba(125, 21, 38, 0.7); }
+.nota { border-left-color: var(--vino-vivo); }
+.acordeon summary::after { border-color: var(--vino-texto); }
+.ficha .etiqueta, .ficha h3 { color: var(--vino-medio); text-shadow: none; }
+.destello { background: radial-gradient(ellipse at center, transparent 35%, rgba(94, 14, 27, 0.55) 100%); }
+.punto::before { border-color: var(--dorado-claro); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
