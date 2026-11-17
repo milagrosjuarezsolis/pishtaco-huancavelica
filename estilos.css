@@ -1424,6 +1424,22 @@ main::after { right: 0; transform: scaleX(-1); animation: humo-der 26s ease-in-o
   main::before, main::after { width: 30vw; opacity: 0.6; }
 }
 
+/* Niebla roja muy oscura, SOLO en los márgenes: nunca llega al texto.
+   El ancho se calcula con el espacio libre fuera del contenido (1200 px + márgenes). */
+main::before, main::after {
+  width: calc(max(0px, (100vw - 1200px) / 2) + 38px);
+  opacity: 1; filter: blur(8px);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='900'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.007' numOctaves='3' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.02 0 0 0 0 0.05 1.6 0 0 0 -0.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") center / cover no-repeat,
+    linear-gradient(90deg, rgba(34, 4, 10, 0.95) 0%, rgba(42, 6, 12, 0.6) 45%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 35%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 35%, transparent 100%);
+}
+@media (max-width: 1100px) {
+  /* en pantallas angostas no hay margen libre: queda solo un borde de niebla muy fino */
+  main::before, main::after { width: 14px; filter: blur(4px); opacity: 0.8; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
