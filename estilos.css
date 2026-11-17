@@ -1211,6 +1211,11 @@ body, .relato, .intro, .pieza .texto p, .panel p, .acordeon details p, .datos dd
 .etiqueta::before { background: linear-gradient(90deg, transparent, var(--rojo-subtema)); }
 .etiqueta::after, .sello::before { background: var(--rojo-subtema); box-shadow: 0 0 8px rgba(224, 53, 61, 0.7); }
 .titulo-el { font-size: clamp(2.4rem, 4.8vw, 3.6rem); color: var(--rojo-subtema); margin-bottom: -0.05em; }
+/* Historia base: texto blanco puro, con más cuerpo para que se lea claramente */
+#historia .relato, #historia .relato p, #historia .cierre {
+  color: #ffffff; font-weight: 400; font-size: 1.12rem; line-height: 1.8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
