@@ -25,7 +25,7 @@ const PIEZAS = [
     tipo: "comic",
     enlace: { texto: "Leer el cómic", url: "https://canva.link/htt7pjhj9pbki0f" },
     imagenes: [
-      { src: "img/portada-comic.jpg", w: 615, h: 922, alt: "Portada del cómic El Pishtaco de Huancavelica con Gabriel, María, Don Eusebio y el Pishtaco" },
+      { src: "img/portada-comic-nueva.jpg", w: 760, h: 1140, alt: "Portada del cómic El Pishtaco de Huancavelica: el Pishtaco con la mano ensangrentada detrás de Gabriel, María y Don Eusebio, junto a la piedra del ritual con velas" },
       { src: "img/comic-1.jpg", w: 922, h: 1383, alt: "Página 1 del cómic: el nevado Huamanrazo y la cueva escondida" }
     ]
   },
