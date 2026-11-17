@@ -1056,6 +1056,80 @@ footer h3 { font-family: var(--gotica); text-transform: none; letter-spacing: 0.
 .destello { background: radial-gradient(ellipse at center, transparent 35%, rgba(94, 14, 27, 0.55) 100%); }
 .punto::before { border-color: var(--dorado-claro); }
 
+/* =========================================================
+   TIPOGRAFÍA NUEVA + SIN BLANCO (todo el texto claro pasa a vino)
+   Italiana (títulos y nombres), Marcellus SC (menú, botones, etiquetas),
+   Playfair Display cursiva (frases), Spectral fina (lectura).
+   ========================================================= */
+:root {
+  --letra-vino: #c45a6f;        /* texto de lectura en vino (legible sobre negro) */
+  --letra-vino-suave: #a64a5d;  /* textos secundarios */
+  --texto: var(--letra-vino);
+  --champan: var(--letra-vino);
+  --apagado: var(--letra-vino-suave);
+  --gotica: "Italiana", "Playfair Display", Georgia, serif;
+  --titulo: "Marcellus SC", Georgia, serif;
+  --versalita: "Marcellus SC", Georgia, serif;
+  --cursiva: "Playfair Display", Georgia, serif;
+  --cuerpo: "Spectral", Georgia, serif;
+}
+body { font-family: var(--cuerpo); font-weight: 300; font-size: 18px; color: var(--letra-vino); }
+
+/* Todo lo que era blanco o crema pasa a vino */
+.intro, .pieza .texto p, .panel p, .linea-tiempo li > span:last-child, .acordeon details p, .tablero ol,
+.datos dd, .ficha-uso dd, .portada .bajada, .cierre, .frase, footer, .miniatura span, .visor figcaption,
+.escena .pregunta, .escena, .progreso-texto, .leyenda, .datos-portada, .puente, .foto-lugar figcaption, .relato {
+  color: var(--letra-vino);
+}
+.intro, .leyenda, .progreso-texto, .foto-lugar figcaption, .puente { color: var(--letra-vino-suave); }
+strong { color: #d9768a; }
+
+/* Nombres y títulos grandes: Italiana, fina y alta, en dorado */
+.titulo-nombre {
+  font-family: "Italiana", Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: clamp(3.2rem, 10vw, 7.4rem); line-height: 1;
+}
+.dossier h3 { font-family: "Italiana", Georgia, serif; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; font-size: clamp(2.4rem, 5.2vw, 4rem); }
+.titulo-seccion { font-family: "Italiana", Georgia, serif; font-weight: 400; letter-spacing: 0.12em; font-size: clamp(2.1rem, 5vw, 3.4rem); }
+.pieza h3, .panel h3, .escena h3, .linea-tiempo strong, .acordeon summary {
+  font-family: "Italiana", Georgia, serif; font-weight: 400; letter-spacing: 0.08em;
+}
+.pieza h3 { font-size: clamp(1.8rem, 3.8vw, 2.5rem); }
+.escena h3, .panel h3 { font-size: 1.55rem; }
+.linea-tiempo strong { font-size: clamp(1.35rem, 2.2vw, 1.75rem); }
+.acordeon summary { font-size: clamp(1.15rem, 2vw, 1.35rem); }
+.marca, footer h3 { font-family: "Italiana", Georgia, serif; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; }
+.marca { font-size: 1.3rem; }
+
+/* Frases: Playfair Display cursiva */
+.titulo-el, .titulo-lugar, .lema, .banner-frase, .nota, .cierre, .frase {
+  font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 400;
+}
+.titulo-el { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.titulo-lugar { font-size: clamp(1.3rem, 2.8vw, 2rem); }
+.lema { font-size: clamp(1.15rem, 2.2vw, 1.5rem); }
+.banner-frase { font-size: clamp(1.5rem, 3.2vw, 2.5rem); }
+.nota { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+.frase { font-size: clamp(1.05rem, 1.7vw, 1.22rem); }
+.portada .bajada { font-family: var(--cuerpo); font-style: normal; font-weight: 300; font-size: clamp(1.15rem, 1.9vw, 1.32rem); }
+
+/* «Toc» y capitular: Playfair Display cursiva, en vino */
+.toc-grande { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 600; letter-spacing: 0.02em; font-size: clamp(2.6rem, 8.6vw, 6.6rem); }
+.relato p:first-child::first-letter { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 500; font-size: 4em; }
+
+/* Menú, botones y etiquetas: Marcellus SC */
+.menu a, .boton, .boton-golpes, .pestana-galeria, .retrato .nombre, .carta span, .lugar-btn, .datos dt, .ficha-uso dt,
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio, .datos-portada {
+  font-family: "Marcellus SC", Georgia, serif; font-weight: 400;
+}
+.menu a { font-size: 0.95rem; color: var(--dorado); }
+.boton, .boton.fantasma, .boton-golpes, .lugar-btn, .pestana-galeria[aria-selected="true"], .acordeon summary { color: var(--dorado); }
+.pestana-galeria, .lugar-btn:not(.activo) { color: var(--letra-vino); }
+.boton { font-size: 0.98rem; letter-spacing: 0.12em; }
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio { font-size: 1rem; letter-spacing: 0.24em; }
+.retrato .nombre { font-size: 0.85rem; color: var(--letra-vino-suave); }
+.retrato[aria-selected="true"] .nombre { color: var(--dorado); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
