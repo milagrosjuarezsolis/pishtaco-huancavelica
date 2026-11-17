@@ -285,7 +285,15 @@ section { padding-block: clamp(64px, 10vw, 120px); }
 .comic .lamina:nth-child(1) { --giro: -2deg; }
 .comic .lamina:nth-child(2) { --giro: 2deg; margin-top: 30px; }
 /* En escritorio, las páginas del cómic se salen un poco del margen */
-@media (min-width: 901px) { .comic { margin-right: calc(-1 * min(6vw, 90px)); } }
+@media (min-width: 901px) { .comic, .foto-lugar { margin-right: calc(-1 * min(6vw, 90px)); } }
+/* Foto de Huancavelica: lámina pegada con un leve tono sepia */
+.foto-lugar { margin: 0; position: sticky; top: calc(var(--nav-alto) + 30px); }
+.foto-lugar .lamina { --giro: 1.5deg; padding: 12px 12px 14px; }
+.foto-lugar img { filter: sepia(0.28) contrast(1.05); }
+.foto-lugar figcaption {
+  margin-top: 16px; text-align: center; color: var(--apagado);
+  font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-size: 1.1rem;
+}
 .comic figcaption { grid-column: 1 / -1; color: var(--apagado); font-size: 0.85rem; margin-top: 10px; }
 /* Línea de tiempo: rombos unidos por un trazo (horizontal en escritorio, vertical en celular) */
 .linea-tiempo {
@@ -506,6 +514,7 @@ footer ul { margin: 0 0 14px; padding-left: 18px; }
 }
 @media (max-width: 900px) {
   .historia-grid, .mapa-grid, .sim, .dos, .pieza, footer .columnas, .expediente { grid-template-columns: 1fr; }
+  .foto-lugar { position: static; }
   .sim { grid-template-areas: "escena" "mano" "tablero"; }
   .sim-mano { margin-top: 18px; }
   /* Retratos: se ve que la fila sigue hacia la derecha */
