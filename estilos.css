@@ -22,10 +22,13 @@
   --borde: rgba(237, 229, 217, 0.13);
 
   /* Tipografías: gótica para los nombres, imprenta antigua para títulos, Garamond para leer */
-  --gotica: "Grenze Gotisch", "IM Fell English SC", Georgia, serif;
-  --titulo: "IM Fell English SC", Georgia, "Times New Roman", serif;
+  /* Tipografía de afiche de cine: Cinzel Decorative (nombres), Cinzel (títulos),
+     Cormorant SC (letras rojas), Cormorant Garamond (cursivas) y EB Garamond (lectura) */
+  --gotica: "Cinzel Decorative", "Cinzel", Georgia, serif;
+  --titulo: "Cinzel", Georgia, "Times New Roman", serif;
+  --versalita: "Cormorant SC", "Cormorant Garamond", Georgia, serif;
   --cuerpo: "EB Garamond", Georgia, serif;
-  --cursiva: "IM Fell English", "Cormorant Garamond", Georgia, serif;
+  --cursiva: "Cormorant Garamond", Georgia, serif;
 
   /* Escala de tamaños */
   --t-14: 0.875rem;
@@ -875,6 +878,69 @@ footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.5rem; }
   background: radial-gradient(circle 260px at var(--lx, 60%) var(--ly, 40%), transparent 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.82) 100%);
 }
 .con-linterna .fondo-banner::after { opacity: 1; }
+
+/* =========================================================
+   TIPOGRAFÍA DE AFICHE (versión final)
+   ========================================================= */
+/* Nombre de la portada: Cinzel Decorative, de hueso a sangre */
+.titulo-nombre {
+  font-weight: 900; letter-spacing: 0.02em; line-height: 1;
+  font-size: clamp(3rem, 9.2vw, 6.6rem);
+  background: linear-gradient(180deg, #fffaf2 0%, #ece2d3 38%, #c43a30 78%, #6e0a0d 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.titulo-el, .titulo-lugar { font-family: var(--cursiva); font-style: italic; font-weight: 600; }
+.titulo-el { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+.titulo-lugar { font-size: clamp(1.5rem, 3.2vw, 2.3rem); letter-spacing: 0.04em; }
+.lema, .portada .bajada, .nota, .cierre, .frase, .banner-frase, .foto-lugar figcaption, .visor figcaption {
+  font-family: var(--cursiva); font-weight: 500;
+}
+.lema { font-size: clamp(1.35rem, 2.6vw, 1.75rem); font-style: italic; font-weight: 600; }
+.portada .bajada { font-style: normal; font-size: clamp(1.25rem, 2.1vw, 1.45rem); }
+.banner-frase { font-weight: 600; }
+.nota { font-weight: 600; }
+
+/* Títulos blancos: Cinzel, como los créditos de una película */
+.titulo-seccion {
+  font-family: var(--titulo); font-weight: 600; letter-spacing: 0.06em;
+  font-size: clamp(2rem, 4.6vw, 3.1rem); color: #f6efe4;
+  text-shadow: 0 0 30px rgba(196, 22, 28, 0.3), 0 2px 0 rgba(0, 0, 0, 0.6);
+}
+.pieza h3, .escena h3, .ficha h3, .panel h3, .linea-tiempo strong, .acordeon summary, footer h3 {
+  font-family: var(--titulo); font-weight: 600; letter-spacing: 0.04em;
+}
+.pieza h3 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); }
+.escena h3, .ficha h3, .panel h3 { font-size: 1.4rem; }
+.linea-tiempo strong { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+.acordeon summary { font-size: clamp(1.02rem, 1.9vw, 1.22rem); }
+.menu a, .boton, .boton-golpes, .pestana-galeria, .retrato .nombre, .carta span, .lugar-btn, .datos dt, .ficha-uso dt {
+  font-family: var(--titulo); font-weight: 600;
+}
+.menu a { font-size: 0.82rem; letter-spacing: 0.1em; }
+.boton { font-size: 0.86rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.boton.chico { font-size: 0.78rem; }
+.boton-golpes { font-size: 0.86rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.pestana-galeria { font-size: 0.9rem; }
+.carta span { font-size: 0.78rem; }
+.lugar-btn { font-size: 0.74rem; }
+
+/* Letras rojas: Cormorant SC, finas y espaciadas, con brillo de brasa */
+.etiqueta, .banner-sup, .sello, .folio, .pieza .medio {
+  font-family: var(--versalita); font-weight: 700; text-transform: none;
+  font-size: 1.15rem; letter-spacing: 0.22em; color: #ef5a4b;
+  text-shadow: 0 0 16px rgba(196, 22, 28, 0.6), 0 1px 0 rgba(0, 0, 0, 0.85);
+}
+.banner-sup { font-size: 1.25rem; }
+.datos-portada { font-family: var(--versalita); font-size: 1rem; font-weight: 600; letter-spacing: 0.18em; text-transform: none; }
+
+/* Nombres de personajes, capitular, «Toc» y marca en Cinzel Decorative */
+.dossier h3 { font-weight: 900; font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: 1; letter-spacing: 0.01em;
+  background: linear-gradient(180deg, #fffaf2 0%, #ece2d3 45%, #c43a30 88%, #6e0a0d 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.toc-grande { font-weight: 900; letter-spacing: 0.04em; font-size: clamp(2.4rem, 8.4vw, 6.2rem); }
+.relato p:first-child::first-letter { font-weight: 900; font-size: 3.8em; padding: 6px 12px 0 0; }
+.marca { font-size: 1.2rem; font-weight: 900; }
+footer h3 { font-family: var(--gotica); font-weight: 700; font-size: 1.3rem; }
+.pieza .numero { font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
