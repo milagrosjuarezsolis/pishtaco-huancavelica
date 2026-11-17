@@ -71,7 +71,7 @@ const PERSONAJES = [
     datos: { "Gestos y expresiones": "Frialdad, engaño, cálculo, desprecio, amenaza, ira contenida", "Lenguaje corporal": "Acecha, manipula", "Vestuario": "Sombrero negro, abrigo oscuro, botas gastadas", "Rasgos": "Manos alargadas, rostro demacrado" }
   },
   {
-    id: "eusebio", nombre: "Don Eusebio", rol: "Huancavelica, 1965",
+    id: "eusebio", nombre: "Don Eusebio", rol: "Huancavelica",
     img: "img/cuerpo-eusebio.jpg", cara: "img/cara-eusebio.jpg",
     texto: "Descubrió la existencia del Pishtaco y pactó con él para conseguir la vida eterna. Colabora con el ritual, engaña a Gabriel y lo guía a la cueva.",
     datos: { "Expresiones": "Neutral, cordialidad, cálculo, ambición, inquietud, temor", "Lenguaje corporal": "Estudia, guía", "Vestuario": "Chaqueta gris, chaleco de lana, zapatos gastados", "Objetos": "Libreta con mapa, cinta de María" }
@@ -83,13 +83,13 @@ const PERSONAJES = [
     datos: { "Expresiones": "Neutral, atención, temor, tristeza, firmeza, alivio", "Lenguaje corporal": "Cautela, protección", "Vestuario": "Blusa clara, manta de lana, pollera azul, zapatos sencillos", "Detalles": "Trenzas y cintas, bolsa de tela" }
   },
   {
-    id: "gabriel", nombre: "Gabriel Quispe", rol: "Detective · Huancavelica, 1965",
+    id: "gabriel", nombre: "Gabriel Quispe", rol: "Detective · Huancavelica",
     img: "img/cuerpo-gabriel.jpg", cara: "img/cara-gabriel.jpg",
-    texto: "Hermano de María. Regresa en 1965 para buscarla, sigue las pistas hasta la cueva, rompe la piedra negra y la rescata.",
+    texto: "Hermano de María. Dos años después regresa para buscarla, sigue las pistas hasta la cueva, rompe la piedra negra y la rescata.",
     datos: { "Expresiones": "Neutral, sospecha, miedo, tristeza, determinación, alivio", "Lenguaje corporal": "Investiga, protege", "Vestuario": "Abrigo marrón, camisa clara, pantalón gris, zapatos de cuero", "Objetos": "Libreta, fotografía, maleta" }
   },
   {
-    id: "habitantes", nombre: "Habitantes", rol: "Personajes secundarios · 1963–1965",
+    id: "habitantes", nombre: "Habitantes", rol: "Personajes secundarios",
     img: "img/hoja-habitantes.jpg", cubrir: true, soloTarjeta: true,
     texto: "La gente de Huancavelica y sus comunidades. Sus testimonios forman el podcast «Voces del pueblo».",
     datos: { "Personajes": "Adulto mayor, comerciante, campesino, joven del pueblo, adulta mayor, vendedora, campesina, joven del pueblo", "Objetos cotidianos": "Canastas, mantas, costales, cántaro" }
@@ -110,7 +110,7 @@ const LUGARES = [
     texto: "Gabriel encontró a María encerrada y descubrió que sería utilizada en el último ritual. Rompió la piedra negra y escapó con ella." },
   { id: "casa-atoq", x: 2.9, y: 34.9, titulo: "Casa de Atoq", tipo: "Lugar · El origen", img: "img/escenario-casa-atoq.jpg",
     texto: "Una pequeña casa de piedra y adobe cerca de las comunidades de las faldas del Huamanrazo. Allí Atoq vivía y estudiaba los rituales de las montañas." },
-  { id: "gabriel", x: 49.5, y: 35.5, titulo: "Gabriel · 1965", tipo: "Personaje", img: "img/cara-gabriel.jpg",
+  { id: "gabriel", x: 49.5, y: 35.5, titulo: "Gabriel", tipo: "Personaje", img: "img/cara-gabriel.jpg",
     texto: "La ruta azul muestra el recorrido de Gabriel. Regresa e investiga la desaparición de su hermana María." },
   { id: "supay", x: 3.3, y: 46.4, titulo: "Supay", tipo: "Divinidad", img: "img/cuerpo-supay.jpg",
     texto: "Antigua divinidad vinculada al mundo de los muertos. Aparece en el ritual y condena a Atoq." },
@@ -119,7 +119,7 @@ const LUGARES = [
   { id: "comunidades", x: 3.6, y: 71.6, titulo: "Comunidades rurales", tipo: "Lugar",
     texto: "Habitantes, viajeros y testimonios. De aquí salen las voces del podcast: los relatos de la gente sobre el Pishtaco y las desapariciones." },
   { id: "pueblo", x: 41.3, y: 72.3, titulo: "Pueblo de Huancavelica", tipo: "Lugar",
-    texto: "Aquí regresa Gabriel en 1965 para buscar a María. Desde el pueblo, el camino principal sube hacia el Huamanrazo." },
+    texto: "Aquí regresa Gabriel, dos años después, para buscar a María. Desde el pueblo, el camino principal sube hacia el Huamanrazo." },
   { id: "quebradas", x: 81, y: 74.2, titulo: "Quebradas y caminos", tipo: "Lugar",
     texto: "Los caminos que suben hacia el nevado Huamanrazo, siguiendo la ruta de los que se atreven a buscar la cueva." },
   { id: "transformacion", x: 12, y: 87, titulo: "Transformación de Atoq", tipo: "Momento clave", img: "img/cara-pishtaco.jpg",
@@ -147,7 +147,7 @@ const ESCENAS = [
     pregunta: "¿Quién desapareció después de encontrarse con el Pishtaco y Don Eusebio?",
     pista: "Su diario se publica en Instagram.",
     revela: "María Quispe desapareció en 1963. Fue llevada a la cueva para el último ritual." },
-  { lugar: "Cueva del Huamanrazo · 1965", titulo: "El rescate", correcta: "gabriel",
+  { lugar: "Cueva del Huamanrazo · Dos años después", titulo: "El rescate", correcta: "gabriel",
     pregunta: "¿Quién siguió las pistas hasta la cueva, rompió la piedra negra y escapó con María?",
     pista: "Es detective y hermano de María.",
     revela: "Gabriel destruyó el ritual. La cueva se derrumbó y Eusebio y el Pishtaco desaparecieron." }
